@@ -1,0 +1,124 @@
+{
+  "stories": [
+    {
+      "id": "reggeli-a-konyhaban",
+      "title": "Reggeli a konyhában",
+      "focus": "Food and daily routine",
+      "hungarian": [
+        "Reggel Anna a konyhában van.",
+        "Kávét iszik és kenyeret eszik.",
+        "A testvére teát kér, de Anna vizet ad neki.",
+        "Utána együtt mennek az iskolába."
+      ],
+      "english": [
+        "In the morning Anna is in the kitchen.",
+        "She drinks coffee and eats bread.",
+        "Her sibling asks for tea, but Anna gives water to them.",
+        "After that, they go to school together."
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "type": "multiple_choice",
+          "prompt": "Mit iszik Anna?",
+          "choices": ["Teát", "Kávét", "Tejet"],
+          "answer": "Kávét"
+        },
+        {
+          "id": "q2",
+          "type": "type_answer",
+          "prompt": "Hová mennek együtt?",
+          "answer": "iskolába",
+          "acceptedAnswers": ["az iskolába", "iskolaba", "az iskolaba"]
+        },
+        {
+          "id": "q3",
+          "type": "true_false",
+          "prompt": "Anna teát ad a testvérének.",
+          "answer": false
+        }
+      ]
+    },
+    {
+      "id": "egy-rovid-vasarlas",
+      "title": "Egy rövid vásárlás",
+      "focus": "Shopping and numbers",
+      "hungarian": [
+        "Péter a boltban van.",
+        "Két almát és egy sajtot vesz.",
+        "A pénztárnál kér egy zacskót is.",
+        "Otthon vacsorát készít a családnak."
+      ],
+      "english": [
+        "Péter is in the shop.",
+        "He buys two apples and one cheese.",
+        "At the checkout he asks for a bag too.",
+        "At home he prepares dinner for the family."
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "type": "multiple_choice",
+          "prompt": "Hány almát vesz Péter?",
+          "choices": ["Egyet", "Kettőt", "Hármat"],
+          "answer": "Kettőt"
+        },
+        {
+          "id": "q2",
+          "type": "match",
+          "prompt": "Párosítsd a magyar szót az angol jelentéshez.",
+          "pairs": [
+            { "left": "bolt", "right": "shop" },
+            { "left": "zacskó", "right": "bag" },
+            { "left": "család", "right": "family" }
+          ]
+        },
+        {
+          "id": "q3",
+          "type": "true_false",
+          "prompt": "Péter reggelit készít otthon.",
+          "answer": false
+        }
+      ]
+    },
+    {
+      "id": "seta-a-parkban",
+      "title": "Séta a parkban",
+      "focus": "Weather and movement verbs",
+      "hungarian": [
+        "Délután Júlia és Márk a parkba mennek.",
+        "Az idő jó, ezért lassan sétálnak.",
+        "Egy kutya fut mellettük, és mindenki nevet.",
+        "A végén leülnek egy padra és beszélgetnek."
+      ],
+      "english": [
+        "In the afternoon Júlia and Márk go to the park.",
+        "The weather is good, so they walk slowly.",
+        "A dog runs next to them, and everyone laughs.",
+        "At the end they sit on a bench and talk."
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "type": "type_answer",
+          "prompt": "Milyen az idő?",
+          "answer": "jó",
+          "acceptedAnswers": ["az idő jó", "jo", "az ido jo"]
+        },
+        {
+          "id": "q2",
+          "type": "true_false",
+          "prompt": "A parkban egy kutya fut.",
+          "answer": true
+        },
+        {
+          "id": "q3",
+          "type": "multiple_choice",
+          "prompt": "Mit csinálnak a végén?",
+          "choices": ["Hazamennek", "Leülnek egy padra", "Futnak"],
+          "answer": "Leülnek egy padra"
+        }
+      ]
+    }
+  ]
+}
