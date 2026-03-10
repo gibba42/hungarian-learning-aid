@@ -1,4 +1,5 @@
 const VERB_QUIZ_STORAGE_KEY = 'hungarianAid.verbQuiz';
+const STUDY_TENSES = ['present', 'past', 'future'];
 
 async function fetchJson(path) {
   const response = await fetch(path);
@@ -38,6 +39,37 @@ function buildOptions(select, options, allLabel) {
   }
 }
 
+function toSentenceCase(value) {
+  return value.charAt(0).toUpperCase() + value.slice(1);
+}
+
+function buildTenseButtons(container, selectedTense, onSelect) {
+  container.innerHTML = '';
+
+  for (const tense of STUDY_TENSES) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'tense-toggle';
+    button.dataset.tense = tense;
+    button.textContent = toSentenceCase(tense);
+    button.setAttribute('aria-pressed', String(tense === selectedTense));
+
+    button.addEventListener('click', () => {
+      onSelect(tense);
+    });
+
+    container.append(button);
+  }
+}
+
+function syncTenseButtons(container, selectedTense) {
+  const buttons = container.querySelectorAll('.tense-toggle');
+  buttons.forEach((button) => {
+    const isSelected = button.dataset.tense === selectedTense;
+    button.setAttribute('aria-pressed', String(isSelected));
+  });
+}
+
 function renderCards(items) {
   const container = document.getElementById('verb-cards');
   container.innerHTML = '';
@@ -55,7 +87,7 @@ function renderCards(items) {
 
     button.innerHTML = `
       <div class="prompt">${item.infinitive}</div>
-      <div class="card-meta">Tense: <strong>${item.tense}</strong></div>
+      <div class="card-meta">Tense: <strong>${toSentenceCase(item.tense)}</strong></div>
       <div class="card-meta">Pronoun: <strong>${item.pronoun}</strong></div>
       <div class="answer hidden">Hungarian: ${item.hungarian}</div>
     `;
@@ -234,29 +266,35 @@ async function loadVerbs() {
     const verbFilter = document.getElementById('verb-filter');
     const tenseFilter = document.getElementById('tense-filter');
     const count = document.getElementById('verb-count');
+    let selectedTense = 'present';
 
     const verbOptions = [...new Set(conjugationCards.map((item) => item.infinitive))].sort();
-    const tenseOptions = [...new Set(conjugationCards.map((item) => item.tense))].sort();
+    const tenseOptions = new Set(conjugationCards.map((item) => item.tense));
 
     buildOptions(verbFilter, verbOptions, 'All verbs');
-    buildOptions(tenseFilter, tenseOptions, 'All tenses');
+
+    const fallbackTense = STUDY_TENSES.find((tense) => tenseOptions.has(tense));
+    selectedTense = fallbackTense || STUDY_TENSES[0];
+    buildTenseButtons(tenseFilter, selectedTense, (tense) => {
+      selectedTense = tense;
+      syncTenseButtons(tenseFilter, selectedTense);
+      updateView();
+    });
 
     const updateView = () => {
       const selectedVerb = verbFilter.value;
-      const selectedTense = tenseFilter.value;
 
       const filteredItems = conjugationCards.filter((item) => {
         const verbMatch = selectedVerb === 'all' || item.infinitive === selectedVerb;
-        const tenseMatch = selectedTense === 'all' || item.tense === selectedTense;
+        const tenseMatch = item.tense === selectedTense;
         return verbMatch && tenseMatch;
       });
 
       renderCards(filteredItems);
-      count.textContent = `${filteredItems.length} cards shown · ${verbs.length} verb entries`;
+      count.textContent = `${filteredItems.length} ${toSentenceCase(selectedTense)} tense cards shown · ${verbs.length} verb entries`;
     };
 
     verbFilter.addEventListener('change', updateView);
-    tenseFilter.addEventListener('change', updateView);
 
     updateView();
     setupVerbQuiz(conjugationCards);
