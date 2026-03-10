@@ -7,6 +7,7 @@ All study material is stored in this folder so you can expand content without ed
 - `phrases.json` → short sentence/phrase cards in `{ "phrases": [...] }`
 - `verbs.json` → verb list and conjugation forms in `{ "verbs": [...] }`
 - `grammar-reference.json` → grammar sections and conjugation table content
+- `stories.json` → Story Mode readings and comprehension questions in `{ "stories": [...] }`
 
 ## How to add content
 1. Add a new object to the relevant array.
