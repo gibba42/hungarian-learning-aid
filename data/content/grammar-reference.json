@@ -1,5 +1,5 @@
 {
-  "pageIntro": "Quick reference for the verb and vocabulary study pages. Focus on high-frequency present tense patterns plus a few core past forms.",
+  "pageIntro": "Quick reference for the verb and vocabulary study pages. Focus on high-frequency present, past, and future patterns you can reuse right away.",
   "sections": [
     {
       "title": "1) Present tense basics",
@@ -165,7 +165,135 @@
       ]
     },
     {
-      "title": "4) Worked examples (step by step)",
+      "title": "4) Past tense basics",
+      "intro": "For beginner conversation, one core past form covers all persons. Person endings are added to that past stem.",
+      "points": [
+        "A common pattern is past stem + personal ending (for example: tanult-am, tanult-ál, tanult).",
+        "Many useful verbs in this app show a clear past form: mentem, ettem, ittam, tanultam.",
+        "Use time words to make meaning clearer: tegnap (yesterday), ma reggel (this morning)."
+      ],
+      "tables": [
+        {
+          "title": "Past tense snapshot",
+          "columns": [
+            "Verb",
+            "én",
+            "te",
+            "ő",
+            "mi",
+            "ti",
+            "ők"
+          ],
+          "rows": [
+            [
+              "menni",
+              "mentem",
+              "mentél",
+              "ment",
+              "mentünk",
+              "mentetek",
+              "mentek"
+            ],
+            [
+              "inni",
+              "ittam",
+              "ittál",
+              "ivott",
+              "ittunk",
+              "ittatok",
+              "ittak"
+            ],
+            [
+              "tanulni",
+              "tanultam",
+              "tanultál",
+              "tanult",
+              "tanultunk",
+              "tanultatok",
+              "tanultak"
+            ]
+          ]
+        }
+      ],
+      "examples": [
+        {
+          "hungarian": "Tegnap iskolába mentem.",
+          "breakdown": "tegnap = yesterday, iskolába = to school, mentem = I went",
+          "english": "I went to school yesterday."
+        },
+        {
+          "hungarian": "Mi vizet ittunk.",
+          "breakdown": "vizet = water (object), ittunk = we drank",
+          "english": "We drank water."
+        }
+      ]
+    },
+    {
+      "title": "5) Future tense basics",
+      "intro": "A beginner-friendly way to form future is infinitive + fog + person ending. You can use this with many verbs quickly.",
+      "points": [
+        "Pattern: verb infinitive + fogok/fogsz/fog/fogunk/fogtok/fognak.",
+        "Examples from app verbs: menni fogok, tanulni fogunk, inni fogsz.",
+        "Use time words for context: holnap (tomorrow), később (later)."
+      ],
+      "tables": [
+        {
+          "title": "Future tense snapshot",
+          "columns": [
+            "Verb",
+            "én",
+            "te",
+            "ő",
+            "mi",
+            "ti",
+            "ők"
+          ],
+          "rows": [
+            [
+              "menni",
+              "menni fogok",
+              "menni fogsz",
+              "menni fog",
+              "menni fogunk",
+              "menni fogtok",
+              "menni fognak"
+            ],
+            [
+              "enni",
+              "enni fogok",
+              "enni fogsz",
+              "enni fog",
+              "enni fogunk",
+              "enni fogtok",
+              "enni fognak"
+            ],
+            [
+              "tanulni",
+              "tanulni fogok",
+              "tanulni fogsz",
+              "tanulni fog",
+              "tanulni fogunk",
+              "tanulni fogtok",
+              "tanulni fognak"
+            ]
+          ]
+        }
+      ],
+      "examples": [
+        {
+          "hungarian": "Holnap magyarul fogok tanulni.",
+          "breakdown": "holnap = tomorrow, magyarul = in Hungarian, fogok tanulni = I will study",
+          "english": "Tomorrow I will study Hungarian."
+        },
+        {
+          "hungarian": "Ő kenyeret fog enni.",
+          "breakdown": "kenyeret = bread (object), fog enni = will eat",
+          "english": "He/She will eat bread."
+        }
+      ]
+    },
+    {
+      "title": "6) Worked examples (step by step)",
       "intro": "Use these as mini-templates when you build your own sentences.",
       "examples": [
         {
