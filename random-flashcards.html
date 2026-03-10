@@ -34,7 +34,7 @@
 
       <section class="panel">
         <h2>One Card at a Time</h2>
-        <p>Reveal the answer when ready, then jump to a new random card.</p>
+        <p>Start a lightweight random study session, reveal answers, and self-mark your results.</p>
         <div class="filters random-flashcard-filters" aria-label="Random flashcard filters">
           <label for="random-flashcard-content-type">
             Card type
@@ -60,9 +60,19 @@
             </select>
           </label>
 
+          <label for="random-flashcard-session-length">
+            Session length
+            <select id="random-flashcard-session-length">
+              <option value="10">10 cards</option>
+              <option value="20">20 cards</option>
+              <option value="unlimited">Unlimited</option>
+            </select>
+          </label>
+
           <button id="random-flashcard-reshuffle" class="button-link" type="button">Reshuffle / Start over</button>
         </div>
         <p id="random-flashcard-meta" class="meta"></p>
+        <p id="random-flashcard-progress" class="meta"></p>
       </section>
 
       <section class="panel random-flashcard-panel" aria-live="polite">
@@ -74,8 +84,20 @@
 
         <div class="quiz-actions random-flashcard-actions">
           <button id="random-flashcard-reveal" class="button-link" type="button">Reveal answer</button>
+          <button id="random-flashcard-mark-correct" class="button-link" type="button" disabled>Mark correct</button>
+          <button id="random-flashcard-mark-incorrect" class="button-link" type="button" disabled>Mark incorrect</button>
           <button id="random-flashcard-next" class="button-link" type="button">Next random card</button>
         </div>
+
+        <section id="random-flashcard-summary" class="random-flashcard-summary hidden" aria-live="polite">
+          <h3>Session summary</h3>
+          <ul>
+            <li>Cards seen: <strong id="random-flashcard-summary-seen">0</strong></li>
+            <li>Marked correct: <strong id="random-flashcard-summary-correct">0</strong></li>
+            <li>Marked incorrect: <strong id="random-flashcard-summary-incorrect">0</strong></li>
+          </ul>
+          <p class="meta">Change filters or session length, then reshuffle to start a new session.</p>
+        </section>
       </section>
     </main>
   </body>
