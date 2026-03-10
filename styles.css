@@ -147,3 +147,27 @@ body {
   text-align: left;
 }
 .table th { background: #eef3fb; }
+
+
+.quiz-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.85rem;
+  background: #fbfdff;
+  margin-bottom: 0.75rem;
+}
+
+.quiz-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.quiz-actions .button-link {
+  cursor: pointer;
+}
+
+.quiz-actions .button-link:disabled {
+  background: #90a3c6;
+  cursor: not-allowed;
+}

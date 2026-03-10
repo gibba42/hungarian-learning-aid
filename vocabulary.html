@@ -45,6 +45,25 @@
         </div>
         <p id="vocab-count" class="meta"></p>
       </section>
+
+      <section class="panel" aria-live="polite">
+        <h2>Vocabulary Quiz</h2>
+        <p>Study one prompt at a time. Reveal the answer, score yourself, then move on.</p>
+        <p id="vocab-quiz-score" class="meta"></p>
+        <div id="vocab-quiz-card" class="quiz-card">
+          <div id="vocab-quiz-prompt" class="prompt"></div>
+          <div id="vocab-quiz-hint" class="hint"></div>
+          <div id="vocab-quiz-answer" class="answer hidden"></div>
+        </div>
+        <div class="quiz-actions">
+          <button id="vocab-quiz-reveal" class="button-link" type="button">Reveal answer</button>
+          <button id="vocab-quiz-correct" class="button-link" type="button">I was correct</button>
+          <button id="vocab-quiz-incorrect" class="button-link" type="button">I was incorrect</button>
+          <button id="vocab-quiz-next" class="button-link" type="button">Next item</button>
+          <button id="vocab-quiz-reset" class="button-link" type="button">Restart quiz</button>
+        </div>
+      </section>
+
       <section id="vocab-cards" class="grid cards" aria-live="polite"></section>
     </main>
   </body>
