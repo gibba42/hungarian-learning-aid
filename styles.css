@@ -1,34 +1,72 @@
 :root {
   color-scheme: light;
-  --bg: #f6f8fb;
+  --bg: #f3f6fb;
   --panel: #ffffff;
+  --panel-soft: #f8fbff;
   --text: #13233a;
-  --muted: #4b5d78;
+  --muted: #4f617c;
   --accent: #2563eb;
+  --accent-strong: #1d4ed8;
   --border: #d7e0eb;
+  --success: #0b7a3f;
+  --shadow-soft: 0 6px 18px rgba(15, 31, 53, 0.06);
 }
 
 * { box-sizing: border-box; }
+
 body {
   margin: 0;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  line-height: 1.55;
   color: var(--text);
   background: var(--bg);
 }
 
+h1,
+h2,
+h3 {
+  line-height: 1.25;
+  margin: 0 0 0.55rem;
+}
+
+h1 {
+  font-size: clamp(1.55rem, 1.2rem + 1.2vw, 2.2rem);
+}
+
+h2 {
+  font-size: clamp(1.2rem, 1.05rem + 0.65vw, 1.5rem);
+}
+
+h3 {
+  font-size: 1.05rem;
+}
+
+p {
+  margin: 0 0 0.75rem;
+}
+
 .container {
-  width: min(980px, 92vw);
+  width: min(1040px, 92vw);
   margin-inline: auto;
 }
 
 .site-header {
   background: #0f1f35;
   color: #fff;
-  padding: 1rem 0 1.25rem;
-  margin-bottom: 1.25rem;
+  padding: 1.2rem 0 1.4rem;
+  margin-bottom: 1.4rem;
+  box-shadow: 0 3px 16px rgba(6, 15, 30, 0.24);
 }
-.subtitle { color: #c4d4eb; margin-top: -0.35rem; }
+
+.subtitle {
+  color: #c4d4eb;
+  margin-top: -0.2rem;
+  margin-bottom: 0;
+}
+
+main.container {
+  padding-bottom: 1.25rem;
+}
 
 .nav-list {
   list-style: none;
@@ -42,11 +80,19 @@ body {
 .nav-list a {
   color: #eef4ff;
   text-decoration: none;
-  background: rgba(255,255,255,.1);
-  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 999px;
-  padding: .35rem .8rem;
+  padding: 0.4rem 0.9rem;
   display: inline-block;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.nav-list a:hover,
+.nav-list a:focus-visible {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.32);
+  outline: none;
 }
 
 .nav-list a[aria-current="page"] {
@@ -59,19 +105,31 @@ body {
 .panel {
   background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 14px;
   padding: 1rem;
   margin-bottom: 1rem;
+  box-shadow: var(--shadow-soft);
 }
 
 .grid { display: grid; gap: 1rem; }
-.two-up { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-.cards { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+
+.two-up {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.cards {
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+.cards:empty {
+  display: block;
+}
 
 .study-nav {
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
+  align-items: center;
 }
 
 .card-button {
@@ -80,26 +138,51 @@ body {
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: .85rem;
+  padding: 0.9rem;
   color: inherit;
   cursor: pointer;
-  transition: transform .08s ease, border-color .15s ease;
+  transition: transform 0.08s ease, border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  min-height: 138px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.25rem;
 }
+
 .card-button:hover,
 .card-button:focus-visible {
   transform: translateY(-1px);
   border-color: var(--accent);
+  box-shadow: 0 7px 16px rgba(37, 99, 235, 0.16);
   outline: none;
 }
 
-.prompt { font-weight: 700; margin-bottom: .45rem; }
-.answer {
-  color: #0b7a3f;
-  font-weight: 600;
-  margin-top: .45rem;
+.card-button[aria-expanded="true"] {
+  background: var(--panel-soft);
+  border-color: #a6c6ff;
 }
+
+.prompt {
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.answer {
+  color: var(--success);
+  font-weight: 700;
+  margin-top: 0.45rem;
+  padding-top: 0.45rem;
+  border-top: 1px dashed #c5d8f8;
+}
+
 .hidden { display: none; }
-.meta, .hint { color: var(--muted); }
+
+.meta,
+.hint,
+.card-meta {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
 
 .button-link {
   display: inline-block;
@@ -107,8 +190,17 @@ body {
   color: #fff;
   background: var(--accent);
   border-radius: 8px;
-  padding: .45rem .75rem;
+  padding: 0.45rem 0.75rem;
   border: 1px solid transparent;
+  font: inherit;
+  transition: background 0.15s ease, transform 0.08s ease;
+}
+
+.button-link:hover,
+.button-link:focus-visible {
+  background: var(--accent-strong);
+  transform: translateY(-1px);
+  outline: none;
 }
 
 .button-link[aria-current="page"] {
@@ -117,7 +209,7 @@ body {
 
 .filters {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
   gap: 0.75rem;
   margin-bottom: 0.5rem;
 }
@@ -126,14 +218,29 @@ body {
   display: grid;
   gap: 0.3rem;
   font-size: 0.95rem;
+  font-weight: 600;
 }
 
 .filters select {
   width: 100%;
-  padding: 0.45rem;
+  padding: 0.5rem;
   border: 1px solid var(--border);
   border-radius: 8px;
   background: #fff;
+  color: var(--text);
+}
+
+.filters select:focus-visible {
+  outline: 2px solid #b7ceff;
+  border-color: var(--accent);
+}
+
+.empty-state {
+  background: #f8fbff;
+  border: 1px dashed #bfd2ef;
+  color: #2a4467;
+  border-radius: 12px;
+  padding: 1rem;
 }
 
 .table-wrap { overflow-x: auto; }
@@ -141,18 +248,20 @@ body {
   width: 100%;
   border-collapse: collapse;
 }
-.table th, .table td {
+
+.table th,
+.table td {
   border: 1px solid var(--border);
-  padding: .5rem .55rem;
+  padding: 0.5rem 0.55rem;
   text-align: left;
 }
-.table th { background: #eef3fb; }
 
+.table th { background: #eef3fb; }
 
 .quiz-card {
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 0.85rem;
+  padding: 0.9rem;
   background: #fbfdff;
   margin-bottom: 0.75rem;
 }
@@ -170,6 +279,7 @@ body {
 .quiz-actions .button-link:disabled {
   background: #90a3c6;
   cursor: not-allowed;
+  transform: none;
 }
 
 .grammar-section h2 {
@@ -205,4 +315,37 @@ body {
 
 .example-card p:last-child {
   margin-bottom: 0;
+}
+
+@media (max-width: 680px) {
+  .site-header {
+    padding: 1rem 0 1.2rem;
+  }
+
+  .nav-list {
+    gap: 0.45rem;
+  }
+
+  .nav-list a,
+  .button-link {
+    padding: 0.42rem 0.68rem;
+  }
+
+  .panel {
+    padding: 0.85rem;
+    border-radius: 12px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .card-button {
+    min-height: 0;
+  }
+
+  .quiz-actions .button-link {
+    flex: 1 1 140px;
+    text-align: center;
+  }
 }
