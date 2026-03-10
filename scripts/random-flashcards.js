@@ -1,5 +1,3 @@
-const RANDOM_FLASHCARD_CONTENT_TYPES = ['word', 'phrase'];
-
 async function fetchJson(path) {
   const response = await fetch(path);
   if (!response.ok) {
@@ -13,11 +11,17 @@ function showFlashcardError(message) {
   const card = document.getElementById('random-flashcard-card');
   const revealButton = document.getElementById('random-flashcard-reveal');
   const nextButton = document.getElementById('random-flashcard-next');
+  const reshuffleButton = document.getElementById('random-flashcard-reshuffle');
+  const typeFilter = document.getElementById('random-flashcard-content-type');
+  const categoryFilter = document.getElementById('random-flashcard-category');
 
   meta.textContent = message;
   card.innerHTML = `<p class="empty-state">${message}</p>`;
   revealButton.disabled = true;
   nextButton.disabled = true;
+  reshuffleButton.disabled = true;
+  typeFilter.disabled = true;
+  categoryFilter.disabled = true;
 }
 
 function normalizeVocabularyCards(vocabularyData) {
@@ -42,10 +46,7 @@ function formatContentType(contentType) {
   if (contentType === 'phrase') {
     return 'Phrase';
   }
-  if (contentType === 'verb') {
-    return 'Verb';
-  }
-  return 'Word';
+  return 'Vocabulary';
 }
 
 function pickRandomIndex(total, previousIndex) {
@@ -68,23 +69,73 @@ function setupRandomFlashcards(cards) {
   const answer = document.getElementById('random-flashcard-answer');
   const revealButton = document.getElementById('random-flashcard-reveal');
   const nextButton = document.getElementById('random-flashcard-next');
+  const reshuffleButton = document.getElementById('random-flashcard-reshuffle');
+  const typeFilter = document.getElementById('random-flashcard-content-type');
+  const categoryFilter = document.getElementById('random-flashcard-category');
 
   if (!cards.length) {
     showFlashcardError('No flashcards available right now.');
     return;
   }
 
-  meta.textContent = `${cards.length} cards loaded · ${RANDOM_FLASHCARD_CONTENT_TYPES.join(' + ')}`;
+  const categories = [...new Set(cards.map((card) => card.category))].sort((a, b) => a.localeCompare(b));
+  categoryFilter.innerHTML = '<option value="all">All categories</option>';
+  categories.forEach((category) => {
+    const option = document.createElement('option');
+    option.value = category;
+    option.textContent = category;
+    categoryFilter.append(option);
+  });
 
-  let currentIndex = pickRandomIndex(cards.length, -1);
+  if (!categories.length) {
+    categoryFilter.disabled = true;
+  }
+
+  const state = {
+    contentType: 'all',
+    category: 'all',
+    visibleCards: cards,
+    currentIndex: -1
+  };
+
+  const updateMeta = () => {
+    const totalCount = cards.length;
+    const visibleCount = state.visibleCards.length;
+    const typeLabel = state.contentType === 'all' ? 'Vocabulary + Phrases' : formatContentType(state.contentType);
+    const categoryLabel = state.category === 'all' ? 'All categories' : state.category;
+    meta.textContent = `${visibleCount}/${totalCount} cards · ${typeLabel} · ${categoryLabel}`;
+  };
 
   const render = () => {
-    const card = cards[currentIndex];
+    if (!state.visibleCards.length) {
+      type.textContent = 'No cards match this filter';
+      prompt.textContent = 'Try choosing a different type or category.';
+      answer.textContent = '';
+      answer.classList.add('hidden');
+      revealButton.disabled = true;
+      nextButton.disabled = true;
+      return;
+    }
+
+    const card = state.visibleCards[state.currentIndex];
     type.textContent = `${formatContentType(card.contentType)} · ${card.category}`;
     prompt.textContent = card.prompt;
     answer.textContent = card.answer;
     answer.classList.add('hidden');
     revealButton.disabled = false;
+    nextButton.disabled = false;
+  };
+
+  const applyFilters = () => {
+    state.visibleCards = cards.filter((card) => {
+      const typeMatch = state.contentType === 'all' || card.contentType === state.contentType;
+      const categoryMatch = state.category === 'all' || card.category === state.category;
+      return typeMatch && categoryMatch;
+    });
+
+    state.currentIndex = state.visibleCards.length ? pickRandomIndex(state.visibleCards.length, -1) : -1;
+    updateMeta();
+    render();
   };
 
   revealButton.addEventListener('click', () => {
@@ -92,15 +143,30 @@ function setupRandomFlashcards(cards) {
   });
 
   nextButton.addEventListener('click', () => {
-    currentIndex = pickRandomIndex(cards.length, currentIndex);
+    state.currentIndex = pickRandomIndex(state.visibleCards.length, state.currentIndex);
     render();
+  });
+
+  reshuffleButton.addEventListener('click', () => {
+    state.currentIndex = pickRandomIndex(state.visibleCards.length, state.currentIndex);
+    render();
+  });
+
+  typeFilter.addEventListener('change', () => {
+    state.contentType = typeFilter.value;
+    applyFilters();
+  });
+
+  categoryFilter.addEventListener('change', () => {
+    state.category = categoryFilter.value;
+    applyFilters();
   });
 
   document.getElementById('random-flashcard-card').addEventListener('click', () => {
     answer.classList.remove('hidden');
   });
 
-  render();
+  applyFilters();
 }
 
 async function loadRandomFlashcards() {

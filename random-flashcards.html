@@ -35,6 +35,25 @@
       <section class="panel">
         <h2>One Card at a Time</h2>
         <p>Reveal the answer when ready, then jump to a new random card.</p>
+        <div class="filters random-flashcard-filters" aria-label="Random flashcard filters">
+          <label for="random-flashcard-content-type">
+            Card type
+            <select id="random-flashcard-content-type">
+              <option value="all">Vocabulary + Phrases</option>
+              <option value="word">Vocabulary only</option>
+              <option value="phrase">Phrases only</option>
+            </select>
+          </label>
+
+          <label for="random-flashcard-category">
+            Category
+            <select id="random-flashcard-category">
+              <option value="all">All categories</option>
+            </select>
+          </label>
+
+          <button id="random-flashcard-reshuffle" class="button-link" type="button">Reshuffle / Start over</button>
+        </div>
         <p id="random-flashcard-meta" class="meta"></p>
       </section>
 
