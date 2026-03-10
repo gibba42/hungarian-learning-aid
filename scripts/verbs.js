@@ -1,3 +1,5 @@
+const VERB_QUIZ_STORAGE_KEY = 'hungarianAid.verbQuiz';
+
 function buildOptions(select, options, allLabel) {
   select.innerHTML = '';
 
@@ -41,6 +43,124 @@ function renderCards(items) {
   }
 }
 
+function readQuizState() {
+  try {
+    const raw = localStorage.getItem(VERB_QUIZ_STORAGE_KEY);
+    if (!raw) {
+      return { asked: 0, correct: 0, incorrect: 0, currentIndex: 0 };
+    }
+
+    const parsed = JSON.parse(raw);
+    if (
+      typeof parsed.asked === 'number' &&
+      typeof parsed.correct === 'number' &&
+      typeof parsed.incorrect === 'number' &&
+      typeof parsed.currentIndex === 'number'
+    ) {
+      return parsed;
+    }
+  } catch {
+    // Fall back to defaults.
+  }
+
+  return { asked: 0, correct: 0, incorrect: 0, currentIndex: 0 };
+}
+
+function writeQuizState(state) {
+  localStorage.setItem(VERB_QUIZ_STORAGE_KEY, JSON.stringify(state));
+}
+
+function setupVerbQuiz(items) {
+  const score = document.getElementById('verb-quiz-score');
+  const prompt = document.getElementById('verb-quiz-prompt');
+  const meta = document.getElementById('verb-quiz-meta');
+  const answer = document.getElementById('verb-quiz-answer');
+
+  const revealButton = document.getElementById('verb-quiz-reveal');
+  const correctButton = document.getElementById('verb-quiz-correct');
+  const incorrectButton = document.getElementById('verb-quiz-incorrect');
+  const nextButton = document.getElementById('verb-quiz-next');
+  const resetButton = document.getElementById('verb-quiz-reset');
+
+  let state = readQuizState();
+  let answerRevealed = false;
+
+  const total = items.length;
+
+  if (state.currentIndex >= total) {
+    state.currentIndex = 0;
+  }
+
+  const renderScore = () => {
+    score.textContent = `Score: ${state.correct} correct · ${state.incorrect} incorrect · ${state.asked} answered`;
+  };
+
+  const renderCurrent = () => {
+    const item = items[state.currentIndex];
+
+    prompt.textContent = item.infinitive;
+    meta.innerHTML = `tense: <strong>${item.tense}</strong> · pronoun: <strong>${item.pronoun}</strong>`;
+    answer.textContent = item.hungarian;
+
+    answer.classList.add('hidden');
+    answerRevealed = false;
+
+    correctButton.disabled = true;
+    incorrectButton.disabled = true;
+  };
+
+  const nextItem = () => {
+    state.currentIndex = (state.currentIndex + 1) % total;
+    writeQuizState(state);
+    renderCurrent();
+  };
+
+  revealButton.addEventListener('click', () => {
+    answer.classList.remove('hidden');
+    answerRevealed = true;
+    correctButton.disabled = false;
+    incorrectButton.disabled = false;
+  });
+
+  correctButton.addEventListener('click', () => {
+    if (!answerRevealed) {
+      return;
+    }
+
+    state.correct += 1;
+    state.asked += 1;
+    writeQuizState(state);
+    renderScore();
+    nextItem();
+  });
+
+  incorrectButton.addEventListener('click', () => {
+    if (!answerRevealed) {
+      return;
+    }
+
+    state.incorrect += 1;
+    state.asked += 1;
+    writeQuizState(state);
+    renderScore();
+    nextItem();
+  });
+
+  nextButton.addEventListener('click', () => {
+    nextItem();
+  });
+
+  resetButton.addEventListener('click', () => {
+    state = { asked: 0, correct: 0, incorrect: 0, currentIndex: 0 };
+    writeQuizState(state);
+    renderScore();
+    renderCurrent();
+  });
+
+  renderScore();
+  renderCurrent();
+}
+
 async function loadVerbs() {
   const response = await fetch('data/content/verbs.json');
   const { verbs } = await response.json();
@@ -82,6 +202,7 @@ async function loadVerbs() {
   tenseFilter.addEventListener('change', updateView);
 
   updateView();
+  setupVerbQuiz(conjugationCards);
 }
 
 loadVerbs();

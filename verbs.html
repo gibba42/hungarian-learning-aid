@@ -45,6 +45,26 @@
         </div>
         <p id="verb-count" class="meta"></p>
       </section>
+
+
+      <section class="panel" aria-live="polite">
+        <h2>Verb Quiz</h2>
+        <p>Practice one conjugation at a time. Reveal the form, score yourself, and continue.</p>
+        <p id="verb-quiz-score" class="meta"></p>
+        <div id="verb-quiz-card" class="quiz-card">
+          <div id="verb-quiz-prompt" class="prompt"></div>
+          <div id="verb-quiz-meta"></div>
+          <div id="verb-quiz-answer" class="answer hidden"></div>
+        </div>
+        <div class="quiz-actions">
+          <button id="verb-quiz-reveal" class="button-link" type="button">Reveal answer</button>
+          <button id="verb-quiz-correct" class="button-link" type="button">I was correct</button>
+          <button id="verb-quiz-incorrect" class="button-link" type="button">I was incorrect</button>
+          <button id="verb-quiz-next" class="button-link" type="button">Next item</button>
+          <button id="verb-quiz-reset" class="button-link" type="button">Restart quiz</button>
+        </div>
+      </section>
+
       <section id="verb-cards" class="grid cards" aria-live="polite"></section>
     </main>
   </body>
