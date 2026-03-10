@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conjugation Trainer | Hungarian Learning Aid</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="scripts/verb-data.js" defer></script>
+    <script src="scripts/conjugation-trainer.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <h1>Conjugation Trainer</h1>
+        <nav aria-label="Main navigation">
+          <ul class="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="random-flashcards.html">Random Flashcards</a></li>
+            <li><a href="vocabulary.html">Vocabulary</a></li>
+            <li><a href="verbs.html">Verbs</a></li>
+            <li><a href="conjugation-trainer.html" aria-current="page">Conjugation Trainer</a></li>
+            <li><a href="grammar.html">Grammar</a></li>
+            <li><a href="daily-challenge.html">Daily Challenge</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="panel study-nav" aria-label="Study sections">
+        <a class="button-link" href="index.html">Home</a>
+        <a class="button-link" href="random-flashcards.html">Random Flashcards</a>
+        <a class="button-link" href="vocabulary.html">Vocabulary</a>
+        <a class="button-link" href="verbs.html">Verbs</a>
+        <a class="button-link" href="conjugation-trainer.html" aria-current="page">Conjugation Trainer</a>
+        <a class="button-link" href="grammar.html">Grammar</a>
+        <a class="button-link" href="daily-challenge.html">Daily Challenge</a>
+      </section>
+
+      <section class="panel">
+        <h2>Practice One Verb at a Time</h2>
+        <div class="filters" aria-label="Trainer filters">
+          <label>
+            Verb
+            <select id="trainer-verb"></select>
+          </label>
+          <label>
+            Tense
+            <select id="trainer-tense"></select>
+          </label>
+        </div>
+        <div class="quiz-actions trainer-actions">
+          <button id="trainer-check" class="button-link" type="button">Check Answers</button>
+          <button id="trainer-reveal" class="button-link" type="button">Reveal Answers</button>
+          <button id="trainer-random" class="button-link" type="button">Random Verb</button>
+        </div>
+      </section>
+
+      <section class="panel" aria-live="polite">
+        <h2 id="trainer-title"></h2>
+        <p id="trainer-feedback" class="meta"></p>
+        <div class="table-wrap">
+          <table class="table trainer-table">
+            <thead>
+              <tr>
+                <th scope="col">Pronoun</th>
+                <th scope="col">Your answer</th>
+                <th scope="col">Result</th>
+              </tr>
+            </thead>
+            <tbody id="trainer-rows"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

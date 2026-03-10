@@ -23,6 +23,7 @@ Then open:
 - Random Flashcards (one random word/phrase at a time)
 - Vocabulary (click-to-reveal flashcards)
 - Verbs (click-to-reveal conjugation cards)
+- Conjugation Trainer (type full conjugation sets with feedback)
 - Grammar Reference (explanations + conjugation table)
 
 ## Content structure

@@ -509,3 +509,30 @@ main.container {
   outline: 2px solid #b7ceff;
   border-color: var(--accent);
 }
+
+.trainer-table input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.45rem 0.55rem;
+  font: inherit;
+}
+
+.trainer-table input:focus-visible {
+  outline: 2px solid #b7ceff;
+  border-color: var(--accent);
+}
+
+.trainer-table .is-correct {
+  border-color: #66b98c;
+  background: #f2fff8;
+}
+
+.trainer-table .is-incorrect {
+  border-color: #d27a7a;
+  background: #fff6f6;
+}
+
+.trainer-actions {
+  margin-top: 0.8rem;
+}
