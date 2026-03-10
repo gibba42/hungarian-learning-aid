@@ -14,6 +14,7 @@ function showFlashcardError(message) {
   const reshuffleButton = document.getElementById('random-flashcard-reshuffle');
   const typeFilter = document.getElementById('random-flashcard-content-type');
   const categoryFilter = document.getElementById('random-flashcard-category');
+  const includeVerbsFilter = document.getElementById('random-flashcard-include-verbs');
 
   meta.textContent = message;
   card.innerHTML = `<p class="empty-state">${message}</p>`;
@@ -22,6 +23,7 @@ function showFlashcardError(message) {
   reshuffleButton.disabled = true;
   typeFilter.disabled = true;
   categoryFilter.disabled = true;
+  includeVerbsFilter.disabled = true;
 }
 
 function normalizeVocabularyCards(vocabularyData) {
@@ -42,11 +44,36 @@ function normalizePhraseCards(phraseData) {
   }));
 }
 
+function normalizeVerbCards(verbData) {
+  return (verbData.verbs ?? []).flatMap((verb) => {
+    const conjugations = verb.conjugations ?? {};
+    return Object.entries(conjugations).flatMap(([tense, forms]) =>
+      (forms ?? []).map((form) => ({
+        prompt: `${verb.englishInfinitive} · ${tense} · ${form.pronoun}`,
+        answer: form.hungarian,
+        category: 'Verb',
+        contentType: 'verb'
+      }))
+    );
+  });
+}
+
 function formatContentType(contentType) {
   if (contentType === 'phrase') {
     return 'Phrase';
   }
+  if (contentType === 'verb') {
+    return 'Verb';
+  }
   return 'Vocabulary';
+}
+
+function formatContentTypeSummary(contentType, includeVerbs) {
+  if (contentType === 'all') {
+    return includeVerbs ? 'Vocabulary + Phrases + Verbs' : 'Vocabulary + Phrases';
+  }
+
+  return formatContentType(contentType);
 }
 
 function pickRandomIndex(total, previousIndex) {
@@ -72,6 +99,7 @@ function setupRandomFlashcards(cards) {
   const reshuffleButton = document.getElementById('random-flashcard-reshuffle');
   const typeFilter = document.getElementById('random-flashcard-content-type');
   const categoryFilter = document.getElementById('random-flashcard-category');
+  const includeVerbsFilter = document.getElementById('random-flashcard-include-verbs');
 
   if (!cards.length) {
     showFlashcardError('No flashcards available right now.');
@@ -94,6 +122,7 @@ function setupRandomFlashcards(cards) {
   const state = {
     contentType: 'all',
     category: 'all',
+    includeVerbs: false,
     visibleCards: cards,
     currentIndex: -1
   };
@@ -101,7 +130,7 @@ function setupRandomFlashcards(cards) {
   const updateMeta = () => {
     const totalCount = cards.length;
     const visibleCount = state.visibleCards.length;
-    const typeLabel = state.contentType === 'all' ? 'Vocabulary + Phrases' : formatContentType(state.contentType);
+    const typeLabel = formatContentTypeSummary(state.contentType, state.includeVerbs);
     const categoryLabel = state.category === 'all' ? 'All categories' : state.category;
     meta.textContent = `${visibleCount}/${totalCount} cards · ${typeLabel} · ${categoryLabel}`;
   };
@@ -109,7 +138,7 @@ function setupRandomFlashcards(cards) {
   const render = () => {
     if (!state.visibleCards.length) {
       type.textContent = 'No cards match this filter';
-      prompt.textContent = 'Try choosing a different type or category.';
+      prompt.textContent = 'Try choosing a different type, category, or verb option.';
       answer.textContent = '';
       answer.classList.add('hidden');
       revealButton.disabled = true;
@@ -128,9 +157,10 @@ function setupRandomFlashcards(cards) {
 
   const applyFilters = () => {
     state.visibleCards = cards.filter((card) => {
+      const verbsAllowed = state.includeVerbs || card.contentType !== 'verb';
       const typeMatch = state.contentType === 'all' || card.contentType === state.contentType;
       const categoryMatch = state.category === 'all' || card.category === state.category;
-      return typeMatch && categoryMatch;
+      return verbsAllowed && typeMatch && categoryMatch;
     });
 
     state.currentIndex = state.visibleCards.length ? pickRandomIndex(state.visibleCards.length, -1) : -1;
@@ -157,6 +187,11 @@ function setupRandomFlashcards(cards) {
     applyFilters();
   });
 
+  includeVerbsFilter.addEventListener('change', () => {
+    state.includeVerbs = includeVerbsFilter.value === 'include';
+    applyFilters();
+  });
+
   categoryFilter.addEventListener('change', () => {
     state.category = categoryFilter.value;
     applyFilters();
@@ -173,10 +208,12 @@ async function loadRandomFlashcards() {
   try {
     const vocabularyData = await fetchJson('data/content/vocabulary.json');
     const phraseData = await fetchJson('data/content/phrases.json');
+    const verbData = await fetchJson('data/content/verbs.json');
 
     const cards = [
       ...normalizeVocabularyCards(vocabularyData),
-      ...normalizePhraseCards(phraseData)
+      ...normalizePhraseCards(phraseData),
+      ...normalizeVerbCards(verbData)
     ];
 
     setupRandomFlashcards(cards);
