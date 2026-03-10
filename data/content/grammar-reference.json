@@ -1,5 +1,5 @@
 {
-  "pageIntro": "Quick reference for the verb and vocabulary study pages. Focus on high-frequency present tense patterns.",
+  "pageIntro": "Quick reference for the verb and vocabulary study pages. Focus on high-frequency present tense patterns plus a few core past forms.",
   "sections": [
     {
       "title": "1) Present tense basics",
@@ -13,11 +13,43 @@
       "tables": [
         {
           "title": "Present tense snapshot (verbs already in this app)",
-          "columns": ["Verb", "én", "te", "ő", "mi", "ti", "ők"],
+          "columns": [
+            "Verb",
+            "én",
+            "te",
+            "ő",
+            "mi",
+            "ti",
+            "ők"
+          ],
           "rows": [
-            ["lenni", "vagyok", "vagy", "van", "vagyunk", "vagytok", "vannak"],
-            ["menni", "megyek", "mész", "megy", "megyünk", "mentek", "mennek"],
-            ["tanulni", "tanulok", "tanulsz", "tanul", "tanulunk", "tanultok", "tanulnak"]
+            [
+              "lenni",
+              "vagyok",
+              "vagy",
+              "van",
+              "vagyunk",
+              "vagytok",
+              "vannak"
+            ],
+            [
+              "menni",
+              "megyek",
+              "mész",
+              "megy",
+              "megyünk",
+              "mentek",
+              "mennek"
+            ],
+            [
+              "tanulni",
+              "tanulok",
+              "tanulsz",
+              "tanul",
+              "tanulunk",
+              "tanultok",
+              "tanulnak"
+            ]
           ]
         }
       ]
@@ -33,14 +65,42 @@
       "tables": [
         {
           "title": "Subject pronouns",
-          "columns": ["Hungarian", "English", "Typical use"],
+          "columns": [
+            "Hungarian",
+            "English",
+            "Typical use"
+          ],
           "rows": [
-            ["én", "I", "Used for emphasis: Én tanulok."],
-            ["te", "you (singular)", "Talking to one person informally."],
-            ["ő", "he / she", "Same form for both genders."],
-            ["mi", "we", "Group including the speaker."],
-            ["ti", "you (plural)", "Talking to multiple people."],
-            ["ők", "they", "Third person plural."]
+            [
+              "én",
+              "I",
+              "Used for emphasis: Én tanulok."
+            ],
+            [
+              "te",
+              "you (singular)",
+              "Talking to one person informally."
+            ],
+            [
+              "ő",
+              "he / she",
+              "Same form for both genders."
+            ],
+            [
+              "mi",
+              "we",
+              "Group including the speaker."
+            ],
+            [
+              "ti",
+              "you (plural)",
+              "Talking to multiple people."
+            ],
+            [
+              "ők",
+              "they",
+              "Third person plural."
+            ]
           ]
         }
       ]
@@ -57,14 +117,49 @@
       "tables": [
         {
           "title": "Pattern view with app verbs",
-          "columns": ["Person", "tanulni (study)", "enni (eat)", "inni (drink)"],
+          "columns": [
+            "Person",
+            "tanulni (study)",
+            "enni (eat)",
+            "inni (drink)"
+          ],
           "rows": [
-            ["én", "tanulok", "eszem", "iszom"],
-            ["te", "tanulsz", "eszel", "iszol"],
-            ["ő", "tanul", "eszik", "iszik"],
-            ["mi", "tanulunk", "eszünk", "iszunk"],
-            ["ti", "tanultok", "esztek", "isztok"],
-            ["ők", "tanulnak", "esznek", "isznak"]
+            [
+              "én",
+              "tanulok",
+              "eszem",
+              "iszom"
+            ],
+            [
+              "te",
+              "tanulsz",
+              "eszel",
+              "iszol"
+            ],
+            [
+              "ő",
+              "tanul",
+              "eszik",
+              "iszik"
+            ],
+            [
+              "mi",
+              "tanulunk",
+              "eszünk",
+              "iszunk"
+            ],
+            [
+              "ti",
+              "tanultok",
+              "esztek",
+              "isztok"
+            ],
+            [
+              "ők",
+              "tanulnak",
+              "esznek",
+              "isznak"
+            ]
           ]
         }
       ]

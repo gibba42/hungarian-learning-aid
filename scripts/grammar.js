@@ -1,3 +1,16 @@
+async function fetchJson(path) {
+  const response = await fetch(path);
+  if (!response.ok) {
+    throw new Error(`Failed to load ${path} (${response.status})`);
+  }
+  return response.json();
+}
+
+function showGrammarError(message) {
+  const root = document.getElementById('grammar-root');
+  root.innerHTML = `<section class="panel"><p class="empty-state">${message}</p></section>`;
+}
+
 function renderTable(tableData) {
   const section = document.createElement('section');
   section.className = 'table-block';
@@ -43,66 +56,77 @@ function renderExample(example) {
   const card = document.createElement('article');
   card.className = 'example-card';
 
-  card.innerHTML = `
-    <p><strong>Hungarian:</strong> ${example.hungarian}</p>
-    <p><strong>Breakdown:</strong> ${example.breakdown}</p>
-    <p><strong>English:</strong> ${example.english}</p>
-  `;
+  const hungarian = document.createElement('p');
+  hungarian.innerHTML = `<strong>Hungarian:</strong> ${example.hungarian}`;
+  const breakdown = document.createElement('p');
+  breakdown.innerHTML = `<strong>Breakdown:</strong> ${example.breakdown}`;
+  const english = document.createElement('p');
+  english.innerHTML = `<strong>English:</strong> ${example.english}`;
+
+  card.append(hungarian, breakdown, english);
 
   return card;
 }
 
 async function loadGrammarReference() {
-  const response = await fetch('data/content/grammar-reference.json');
-  const grammarReference = await response.json();
   const root = document.getElementById('grammar-root');
 
-  const introPanel = document.createElement('section');
-  introPanel.className = 'panel';
-  introPanel.innerHTML = `<p class="meta">${grammarReference.pageIntro}</p>`;
-  root.append(introPanel);
+  try {
+    const grammarReference = await fetchJson('data/content/grammar-reference.json');
 
-  grammarReference.sections.forEach((section) => {
-    const article = document.createElement('article');
-    article.className = 'panel grammar-section';
+    const introPanel = document.createElement('section');
+    introPanel.className = 'panel';
+    const intro = document.createElement('p');
+    intro.className = 'meta';
+    intro.textContent = grammarReference.pageIntro;
+    introPanel.append(intro);
+    root.append(introPanel);
 
-    const title = document.createElement('h2');
-    title.textContent = section.title;
-    article.append(title);
+    grammarReference.sections.forEach((section) => {
+      const article = document.createElement('article');
+      article.className = 'panel grammar-section';
 
-    if (section.intro) {
-      const intro = document.createElement('p');
-      intro.textContent = section.intro;
-      article.append(intro);
-    }
+      const title = document.createElement('h2');
+      title.textContent = section.title;
+      article.append(title);
 
-    if (section.points?.length) {
-      const list = document.createElement('ul');
-      section.points.forEach((point) => {
-        const item = document.createElement('li');
-        item.textContent = point;
-        list.append(item);
-      });
-      article.append(list);
-    }
+      if (section.intro) {
+        const sectionIntro = document.createElement('p');
+        sectionIntro.textContent = section.intro;
+        article.append(sectionIntro);
+      }
 
-    if (section.tables?.length) {
-      section.tables.forEach((tableData) => {
-        article.append(renderTable(tableData));
-      });
-    }
+      if (section.points?.length) {
+        const list = document.createElement('ul');
+        section.points.forEach((point) => {
+          const item = document.createElement('li');
+          item.textContent = point;
+          list.append(item);
+        });
+        article.append(list);
+      }
 
-    if (section.examples?.length) {
-      const examplesWrap = document.createElement('div');
-      examplesWrap.className = 'examples-grid';
-      section.examples.forEach((example) => {
-        examplesWrap.append(renderExample(example));
-      });
-      article.append(examplesWrap);
-    }
+      if (section.tables?.length) {
+        section.tables.forEach((tableData) => {
+          article.append(renderTable(tableData));
+        });
+      }
 
-    root.append(article);
-  });
+      if (section.examples?.length) {
+        const examplesWrap = document.createElement('div');
+        examplesWrap.className = 'examples-grid';
+        section.examples.forEach((example) => {
+          examplesWrap.append(renderExample(example));
+        });
+        article.append(examplesWrap);
+      }
+
+      root.append(article);
+    });
+  } catch (error) {
+    showGrammarError('Could not load grammar reference content. Please refresh and try again.');
+    console.error(error);
+  }
 }
 
 loadGrammarReference();

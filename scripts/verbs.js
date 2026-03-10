@@ -1,5 +1,27 @@
 const VERB_QUIZ_STORAGE_KEY = 'hungarianAid.verbQuiz';
 
+async function fetchJson(path) {
+  const response = await fetch(path);
+  if (!response.ok) {
+    throw new Error(`Failed to load ${path} (${response.status})`);
+  }
+  return response.json();
+}
+
+function showVerbError(message) {
+  const cards = document.getElementById('verb-cards');
+  const count = document.getElementById('verb-count');
+  const quizScore = document.getElementById('verb-quiz-score');
+  const quizCard = document.getElementById('verb-quiz-card');
+  const quizActions = document.querySelector('.quiz-actions');
+
+  count.textContent = message;
+  cards.innerHTML = `<div class="empty-state">${message}</div>`;
+  quizScore.textContent = 'Quiz unavailable';
+  quizCard.classList.add('hidden');
+  quizActions.classList.add('hidden');
+}
+
 function buildOptions(select, options, allLabel) {
   select.innerHTML = '';
 
@@ -92,6 +114,17 @@ function setupVerbQuiz(items) {
 
   const total = items.length;
 
+  if (!total) {
+    score.textContent = 'Quiz unavailable: no verb items loaded.';
+    prompt.textContent = 'No prompt available';
+    meta.textContent = '';
+    answer.textContent = '';
+    [revealButton, correctButton, incorrectButton, nextButton, resetButton].forEach((button) => {
+      button.disabled = true;
+    });
+    return;
+  }
+
   if (state.currentIndex >= total) {
     state.currentIndex = 0;
   }
@@ -167,47 +200,51 @@ function setupVerbQuiz(items) {
 }
 
 async function loadVerbs() {
-  const response = await fetch('data/content/verbs.json');
-  const { verbs } = await response.json();
+  try {
+    const { verbs } = await fetchJson('data/content/verbs.json');
 
-  const conjugationCards = verbs.flatMap((verb) =>
-    verb.forms.map((form) => ({
-      infinitive: verb.englishInfinitive,
-      tense: verb.tense,
-      pronoun: form.pronoun,
-      hungarian: form.hungarian
-    }))
-  );
+    const conjugationCards = verbs.flatMap((verb) =>
+      verb.forms.map((form) => ({
+        infinitive: verb.englishInfinitive,
+        tense: verb.tense,
+        pronoun: form.pronoun,
+        hungarian: form.hungarian
+      }))
+    );
 
-  const verbFilter = document.getElementById('verb-filter');
-  const tenseFilter = document.getElementById('tense-filter');
-  const count = document.getElementById('verb-count');
+    const verbFilter = document.getElementById('verb-filter');
+    const tenseFilter = document.getElementById('tense-filter');
+    const count = document.getElementById('verb-count');
 
-  const verbOptions = [...new Set(conjugationCards.map((item) => item.infinitive))].sort();
-  const tenseOptions = [...new Set(conjugationCards.map((item) => item.tense))].sort();
+    const verbOptions = [...new Set(conjugationCards.map((item) => item.infinitive))].sort();
+    const tenseOptions = [...new Set(conjugationCards.map((item) => item.tense))].sort();
 
-  buildOptions(verbFilter, verbOptions, 'All verbs');
-  buildOptions(tenseFilter, tenseOptions, 'All tenses');
+    buildOptions(verbFilter, verbOptions, 'All verbs');
+    buildOptions(tenseFilter, tenseOptions, 'All tenses');
 
-  const updateView = () => {
-    const selectedVerb = verbFilter.value;
-    const selectedTense = tenseFilter.value;
+    const updateView = () => {
+      const selectedVerb = verbFilter.value;
+      const selectedTense = tenseFilter.value;
 
-    const filteredItems = conjugationCards.filter((item) => {
-      const verbMatch = selectedVerb === 'all' || item.infinitive === selectedVerb;
-      const tenseMatch = selectedTense === 'all' || item.tense === selectedTense;
-      return verbMatch && tenseMatch;
-    });
+      const filteredItems = conjugationCards.filter((item) => {
+        const verbMatch = selectedVerb === 'all' || item.infinitive === selectedVerb;
+        const tenseMatch = selectedTense === 'all' || item.tense === selectedTense;
+        return verbMatch && tenseMatch;
+      });
 
-    renderCards(filteredItems);
-    count.textContent = `${filteredItems.length} cards shown · ${verbs.length} verb entries`;
-  };
+      renderCards(filteredItems);
+      count.textContent = `${filteredItems.length} cards shown · ${verbs.length} verb entries`;
+    };
 
-  verbFilter.addEventListener('change', updateView);
-  tenseFilter.addEventListener('change', updateView);
+    verbFilter.addEventListener('change', updateView);
+    tenseFilter.addEventListener('change', updateView);
 
-  updateView();
-  setupVerbQuiz(conjugationCards);
+    updateView();
+    setupVerbQuiz(conjugationCards);
+  } catch (error) {
+    showVerbError('Could not load verb content. Please refresh and try again.');
+    console.error(error);
+  }
 }
 
 loadVerbs();
