@@ -1,14 +1,14 @@
 {
   "phrases": [
-    { "hungarian": "Hogy vagy?", "english": "How are you?" },
-    { "hungarian": "Jól vagyok.", "english": "I am fine." },
-    { "hungarian": "Mi a neved?", "english": "What is your name?" },
-    { "hungarian": "A nevem Anna.", "english": "My name is Anna." },
-    { "hungarian": "Hol van a pályaudvar?", "english": "Where is the train station?" },
-    { "hungarian": "Nem értem.", "english": "I do not understand." },
-    { "hungarian": "Beszélsz angolul?", "english": "Do you speak English?" },
-    { "hungarian": "Mennyibe kerül?", "english": "How much does it cost?" },
-    { "hungarian": "Segítene, kérem?", "english": "Could you help, please?" },
-    { "hungarian": "Viszontlátásra!", "english": "Goodbye!" }
+    { "hungarian": "Hogy vagy?", "english": "How are you?", "category": "Greetings" },
+    { "hungarian": "Jól vagyok.", "english": "I am fine.", "category": "Greetings" },
+    { "hungarian": "Mi a neved?", "english": "What is your name?", "category": "Introductions" },
+    { "hungarian": "A nevem Anna.", "english": "My name is Anna.", "category": "Introductions" },
+    { "hungarian": "Hol van a pályaudvar?", "english": "Where is the train station?", "category": "Travel" },
+    { "hungarian": "Nem értem.", "english": "I do not understand.", "category": "Essentials" },
+    { "hungarian": "Beszélsz angolul?", "english": "Do you speak English?", "category": "Essentials" },
+    { "hungarian": "Mennyibe kerül?", "english": "How much does it cost?", "category": "Shopping" },
+    { "hungarian": "Segítene, kérem?", "english": "Could you help, please?", "category": "Essentials" },
+    { "hungarian": "Viszontlátásra!", "english": "Goodbye!", "category": "Greetings" }
   ]
 }

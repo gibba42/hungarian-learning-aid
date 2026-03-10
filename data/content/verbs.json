@@ -13,6 +13,18 @@
       ]
     },
     {
+      "englishInfinitive": "to be",
+      "tense": "past",
+      "forms": [
+        { "pronoun": "I", "hungarian": "voltam" },
+        { "pronoun": "you (singular)", "hungarian": "voltál" },
+        { "pronoun": "he/she", "hungarian": "volt" },
+        { "pronoun": "we", "hungarian": "voltunk" },
+        { "pronoun": "you (plural)", "hungarian": "voltatok" },
+        { "pronoun": "they", "hungarian": "voltak" }
+      ]
+    },
+    {
       "englishInfinitive": "to go",
       "tense": "present",
       "forms": [
@@ -22,6 +34,18 @@
         { "pronoun": "we", "hungarian": "megyünk" },
         { "pronoun": "you (plural)", "hungarian": "mentek" },
         { "pronoun": "they", "hungarian": "mennek" }
+      ]
+    },
+    {
+      "englishInfinitive": "to go",
+      "tense": "past",
+      "forms": [
+        { "pronoun": "I", "hungarian": "mentem" },
+        { "pronoun": "you (singular)", "hungarian": "mentél" },
+        { "pronoun": "he/she", "hungarian": "ment" },
+        { "pronoun": "we", "hungarian": "mentünk" },
+        { "pronoun": "you (plural)", "hungarian": "mentetek" },
+        { "pronoun": "they", "hungarian": "mentek" }
       ]
     },
     {
