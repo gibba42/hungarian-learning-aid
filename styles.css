@@ -318,6 +318,16 @@ main.container {
 }
 
 
+
+.random-flashcard-filters {
+  align-items: end;
+}
+
+.random-flashcard-filters .button-link {
+  width: fit-content;
+  min-height: 2.35rem;
+}
+
 .random-flashcard-panel {
   max-width: 760px;
   margin-inline: auto;
