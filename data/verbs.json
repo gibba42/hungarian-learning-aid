@@ -1,0 +1,62 @@
+[
+  {
+    "englishInfinitive": "to be",
+    "tense": "present",
+    "forms": [
+      { "pronoun": "I", "hungarian": "vagyok" },
+      { "pronoun": "you (singular)", "hungarian": "vagy" },
+      { "pronoun": "he/she", "hungarian": "van" },
+      { "pronoun": "we", "hungarian": "vagyunk" },
+      { "pronoun": "you (plural)", "hungarian": "vagytok" },
+      { "pronoun": "they", "hungarian": "vannak" }
+    ]
+  },
+  {
+    "englishInfinitive": "to go",
+    "tense": "present",
+    "forms": [
+      { "pronoun": "I", "hungarian": "megyek" },
+      { "pronoun": "you (singular)", "hungarian": "mész" },
+      { "pronoun": "he/she", "hungarian": "megy" },
+      { "pronoun": "we", "hungarian": "megyünk" },
+      { "pronoun": "you (plural)", "hungarian": "mentek" },
+      { "pronoun": "they", "hungarian": "mennek" }
+    ]
+  },
+  {
+    "englishInfinitive": "to eat",
+    "tense": "present",
+    "forms": [
+      { "pronoun": "I", "hungarian": "eszem" },
+      { "pronoun": "you (singular)", "hungarian": "eszel" },
+      { "pronoun": "he/she", "hungarian": "eszik" },
+      { "pronoun": "we", "hungarian": "eszünk" },
+      { "pronoun": "you (plural)", "hungarian": "esztek" },
+      { "pronoun": "they", "hungarian": "esznek" }
+    ]
+  },
+  {
+    "englishInfinitive": "to drink",
+    "tense": "present",
+    "forms": [
+      { "pronoun": "I", "hungarian": "iszom" },
+      { "pronoun": "you (singular)", "hungarian": "iszol" },
+      { "pronoun": "he/she", "hungarian": "iszik" },
+      { "pronoun": "we", "hungarian": "iszunk" },
+      { "pronoun": "you (plural)", "hungarian": "isztok" },
+      { "pronoun": "they", "hungarian": "isznak" }
+    ]
+  },
+  {
+    "englishInfinitive": "to study",
+    "tense": "present",
+    "forms": [
+      { "pronoun": "I", "hungarian": "tanulok" },
+      { "pronoun": "you (singular)", "hungarian": "tanulsz" },
+      { "pronoun": "he/she", "hungarian": "tanul" },
+      { "pronoun": "we", "hungarian": "tanulunk" },
+      { "pronoun": "you (plural)", "hungarian": "tanultok" },
+      { "pronoun": "they", "hungarian": "tanulnak" }
+    ]
+  }
+]

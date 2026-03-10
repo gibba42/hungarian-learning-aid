@@ -1,0 +1,40 @@
+{
+  "sections": [
+    {
+      "title": "1) Word Order Basics",
+      "points": [
+        "A common beginner sentence pattern is Subject + Verb + Object.",
+        "Example: \"Én vizet iszom\" = \"I drink water\".",
+        "Hungarian word order can shift for emphasis, but starting with SVO is practical for beginners."
+      ]
+    },
+    {
+      "title": "2) Articles and Nouns",
+      "points": [
+        "Hungarian has two articles: \"a\" and \"az\" (both mean \"the\").",
+        "Use \"az\" before vowel sounds and \"a\" before consonant sounds.",
+        "There is no grammatical gender for nouns (no masculine/feminine forms)."
+      ]
+    },
+    {
+      "title": "3) Pronunciation Tips",
+      "points": [
+        "Hungarian stress usually falls on the first syllable.",
+        "Letter pairs like \"sz\" sound like English \"s\", while \"s\" sounds like \"sh\".",
+        "Vowel length can change meaning, so pay attention to accent marks (e.g., o vs ó)."
+      ]
+    }
+  ],
+  "conjugationTable": {
+    "title": "Conjugation table: lenni (to be) — present tense",
+    "subtitle": "A high-frequency irregular verb worth memorizing early.",
+    "rows": [
+      { "pronoun": "én", "hungarian": "vagyok", "english": "I am" },
+      { "pronoun": "te", "hungarian": "vagy", "english": "you are (singular)" },
+      { "pronoun": "ő", "hungarian": "van", "english": "he/she is" },
+      { "pronoun": "mi", "hungarian": "vagyunk", "english": "we are" },
+      { "pronoun": "ti", "hungarian": "vagytok", "english": "you are (plural)" },
+      { "pronoun": "ők", "hungarian": "vannak", "english": "they are" }
+    ]
+  }
+}

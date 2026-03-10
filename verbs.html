@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verbs | Hungarian Learning Aid</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="scripts/verbs.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <h1>Verbs</h1>
+        <nav aria-label="Main navigation">
+          <ul class="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="vocabulary.html">Vocabulary</a></li>
+            <li><a href="verbs.html" aria-current="page">Verbs</a></li>
+            <li><a href="grammar.html">Grammar Reference</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="panel">
+        <h2>Present Tense Practice</h2>
+        <p>Each card shows infinitive, tense, and pronoun. Click to reveal the Hungarian form.</p>
+        <p id="verb-count" class="meta"></p>
+      </section>
+      <section id="verb-cards" class="grid cards" aria-live="polite"></section>
+    </main>
+  </body>
+</html>
