@@ -68,6 +68,12 @@ body {
 .two-up { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
 .cards { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
 
+.study-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
 .card-button {
   width: 100%;
   text-align: left;
@@ -102,6 +108,32 @@ body {
   background: var(--accent);
   border-radius: 8px;
   padding: .45rem .75rem;
+  border: 1px solid transparent;
+}
+
+.button-link[aria-current="page"] {
+  background: #143f98;
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.filters label {
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.95rem;
+}
+
+.filters select {
+  width: 100%;
+  padding: 0.45rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
 }
 
 .table-wrap { overflow-x: auto; }

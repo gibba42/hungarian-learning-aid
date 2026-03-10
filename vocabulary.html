@@ -16,16 +16,33 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="vocabulary.html" aria-current="page">Vocabulary</a></li>
             <li><a href="verbs.html">Verbs</a></li>
-            <li><a href="grammar.html">Grammar Reference</a></li>
+            <li><a href="grammar.html">Grammar</a></li>
           </ul>
         </nav>
       </div>
     </header>
 
     <main class="container">
+      <section class="panel study-nav" aria-label="Study sections">
+        <a class="button-link" href="index.html">Home</a>
+        <a class="button-link" href="vocabulary.html" aria-current="page">Vocabulary</a>
+        <a class="button-link" href="verbs.html">Verbs</a>
+        <a class="button-link" href="grammar.html">Grammar</a>
+      </section>
+
       <section class="panel">
         <h2>Flashcards</h2>
         <p>Click a card to reveal the English translation.</p>
+        <div class="filters" aria-label="Vocabulary filters">
+          <label>
+            Content
+            <select id="type-filter"></select>
+          </label>
+          <label>
+            Category
+            <select id="category-filter"></select>
+          </label>
+        </div>
         <p id="vocab-count" class="meta"></p>
       </section>
       <section id="vocab-cards" class="grid cards" aria-live="polite"></section>

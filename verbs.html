@@ -16,16 +16,33 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="vocabulary.html">Vocabulary</a></li>
             <li><a href="verbs.html" aria-current="page">Verbs</a></li>
-            <li><a href="grammar.html">Grammar Reference</a></li>
+            <li><a href="grammar.html">Grammar</a></li>
           </ul>
         </nav>
       </div>
     </header>
 
     <main class="container">
+      <section class="panel study-nav" aria-label="Study sections">
+        <a class="button-link" href="index.html">Home</a>
+        <a class="button-link" href="vocabulary.html">Vocabulary</a>
+        <a class="button-link" href="verbs.html" aria-current="page">Verbs</a>
+        <a class="button-link" href="grammar.html">Grammar</a>
+      </section>
+
       <section class="panel">
-        <h2>Present Tense Practice</h2>
+        <h2>Verb Practice</h2>
         <p>Each card shows infinitive, tense, and pronoun. Click to reveal the Hungarian form.</p>
+        <div class="filters" aria-label="Verb filters">
+          <label>
+            Verb
+            <select id="verb-filter"></select>
+          </label>
+          <label>
+            Tense
+            <select id="tense-filter"></select>
+          </label>
+        </div>
         <p id="verb-count" class="meta"></p>
       </section>
       <section id="verb-cards" class="grid cards" aria-live="polite"></section>
