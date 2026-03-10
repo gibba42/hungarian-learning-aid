@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Challenge | Hungarian Learning Aid</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="scripts/daily-challenge.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <h1>Daily Challenge</h1>
+        <p class="subtitle">A short mixed-practice session for today</p>
+        <nav aria-label="Main navigation">
+          <ul class="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="random-flashcards.html">Random Flashcards</a></li>
+            <li><a href="vocabulary.html">Vocabulary</a></li>
+            <li><a href="verbs.html">Verbs</a></li>
+            <li><a href="grammar.html">Grammar</a></li>
+            <li><a href="daily-challenge.html" aria-current="page">Daily Challenge</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="panel study-nav" aria-label="Study sections">
+        <a class="button-link" href="index.html">Home</a>
+        <a class="button-link" href="random-flashcards.html">Random Flashcards</a>
+        <a class="button-link" href="vocabulary.html">Vocabulary</a>
+        <a class="button-link" href="verbs.html">Verbs</a>
+        <a class="button-link" href="grammar.html">Grammar</a>
+        <a class="button-link" href="daily-challenge.html" aria-current="page">Daily Challenge</a>
+      </section>
+
+      <section class="panel daily-header" aria-live="polite">
+        <h2>Today's Focused Session</h2>
+        <p id="daily-date" class="meta"></p>
+        <p id="daily-status" class="meta"></p>
+        <div class="daily-progress-wrap">
+          <label for="daily-progress" class="meta">Progress</label>
+          <progress id="daily-progress" value="0" max="10"></progress>
+        </div>
+      </section>
+
+      <section id="daily-question-panel" class="panel" aria-live="polite">
+        <p id="daily-position" class="meta"></p>
+        <p id="daily-type" class="hint"></p>
+        <div id="daily-prompt" class="prompt"></div>
+        <div id="daily-meta" class="meta"></div>
+        <label class="daily-answer-input">
+          Your answer
+          <input id="daily-input" type="text" autocomplete="off" />
+        </label>
+        <div id="daily-answer" class="answer hidden"></div>
+        <p id="daily-feedback" class="meta"></p>
+
+        <div class="quiz-actions">
+          <button id="daily-reveal" class="button-link" type="button">Reveal/check answer</button>
+          <button id="daily-correct" class="button-link" type="button" disabled>I was correct</button>
+          <button id="daily-incorrect" class="button-link" type="button" disabled>I was incorrect</button>
+          <button id="daily-next" class="button-link" type="button" disabled>Next question</button>
+        </div>
+      </section>
+
+      <section id="daily-summary" class="panel hidden" aria-live="polite">
+        <h2>Challenge complete 🎉</h2>
+        <p id="daily-summary-score" class="meta"></p>
+        <ul>
+          <li>Total questions: <strong id="daily-summary-total">0</strong></li>
+          <li>Correct: <strong id="daily-summary-correct">0</strong></li>
+          <li>Incorrect: <strong id="daily-summary-incorrect">0</strong></li>
+          <li>Accuracy: <strong id="daily-summary-percent">0%</strong></li>
+        </ul>
+        <button id="daily-restart" class="button-link" type="button">Restart today's challenge</button>
+      </section>
+    </main>
+  </body>
+</html>
