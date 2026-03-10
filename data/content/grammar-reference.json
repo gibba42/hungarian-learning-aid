@@ -1,40 +1,99 @@
 {
+  "pageIntro": "Quick reference for the verb and vocabulary study pages. Focus on high-frequency present tense patterns.",
   "sections": [
     {
-      "title": "1) Word Order Basics",
+      "title": "1) Present tense basics",
+      "intro": "Start with short, useful sentences in the present tense. Hungarian often allows dropping the pronoun because the verb ending already shows who is doing the action.",
       "points": [
-        "A common beginner sentence pattern is Subject + Verb + Object.",
-        "Example: \"Én vizet iszom\" = \"I drink water\".",
-        "Hungarian word order can shift for emphasis, but starting with SVO is practical for beginners."
+        "Practical beginner order: Subject + Object + Verb (for example: Én vizet iszom).",
+        "Pronouns are optional in many sentences: Iszom vizet also means I drink water.",
+        "One verb form changes for each person (I, you, he/she, etc.).",
+        "Learn frequent verbs first: lenni (to be), menni (to go), enni (to eat), inni (to drink), tanulni (to study)."
+      ],
+      "tables": [
+        {
+          "title": "Present tense snapshot (verbs already in this app)",
+          "columns": ["Verb", "én", "te", "ő", "mi", "ti", "ők"],
+          "rows": [
+            ["lenni", "vagyok", "vagy", "van", "vagyunk", "vagytok", "vannak"],
+            ["menni", "megyek", "mész", "megy", "megyünk", "mentek", "mennek"],
+            ["tanulni", "tanulok", "tanulsz", "tanul", "tanulunk", "tanultok", "tanulnak"]
+          ]
+        }
       ]
     },
     {
-      "title": "2) Articles and Nouns",
+      "title": "2) Pronouns you will see most",
+      "intro": "These pronouns match the person endings in verb tables.",
       "points": [
-        "Hungarian has two articles: \"a\" and \"az\" (both mean \"the\").",
-        "Use \"az\" before vowel sounds and \"a\" before consonant sounds.",
-        "There is no grammatical gender for nouns (no masculine/feminine forms)."
+        "Use pronouns for clarity or emphasis. In normal conversation they are often omitted.",
+        "Ő can mean he or she. Hungarian does not force a gender distinction here.",
+        "Magyar often sounds more natural with fewer explicit pronouns than English."
+      ],
+      "tables": [
+        {
+          "title": "Subject pronouns",
+          "columns": ["Hungarian", "English", "Typical use"],
+          "rows": [
+            ["én", "I", "Used for emphasis: Én tanulok."],
+            ["te", "you (singular)", "Talking to one person informally."],
+            ["ő", "he / she", "Same form for both genders."],
+            ["mi", "we", "Group including the speaker."],
+            ["ti", "you (plural)", "Talking to multiple people."],
+            ["ők", "they", "Third person plural."]
+          ]
+        }
       ]
     },
     {
-      "title": "3) Pronunciation Tips",
+      "title": "3) Common conjugation patterns (present tense)",
+      "intro": "You do not need every exception at once. These patterns cover many beginner verbs.",
       "points": [
-        "Hungarian stress usually falls on the first syllable.",
-        "Letter pairs like \"sz\" sound like English \"s\", while \"s\" sounds like \"sh\".",
-        "Vowel length can change meaning, so pay attention to accent marks (e.g., o vs ó)."
+        "Many regular-style verbs use endings like -ok/-ek (én), -sz (te), no ending (ő), -unk/-ünk (mi), -tok/-tek (ti), -nak/-nek (ők).",
+        "Vowel harmony affects which vowel appears in endings (for example, -ok vs -ek, -unk vs -ünk).",
+        "Some high-frequency verbs are irregular and must be memorized (especially lenni and parts of menni).",
+        "Some verbs show an -ik form in third person singular (for example: eszik, iszik)."
+      ],
+      "tables": [
+        {
+          "title": "Pattern view with app verbs",
+          "columns": ["Person", "tanulni (study)", "enni (eat)", "inni (drink)"],
+          "rows": [
+            ["én", "tanulok", "eszem", "iszom"],
+            ["te", "tanulsz", "eszel", "iszol"],
+            ["ő", "tanul", "eszik", "iszik"],
+            ["mi", "tanulunk", "eszünk", "iszunk"],
+            ["ti", "tanultok", "esztek", "isztok"],
+            ["ők", "tanulnak", "esznek", "isznak"]
+          ]
+        }
+      ]
+    },
+    {
+      "title": "4) Worked examples (step by step)",
+      "intro": "Use these as mini-templates when you build your own sentences.",
+      "examples": [
+        {
+          "hungarian": "(Én) vizet iszom.",
+          "breakdown": "vizet = water (object), iszom = I drink",
+          "english": "I drink water."
+        },
+        {
+          "hungarian": "Te kenyeret eszel.",
+          "breakdown": "kenyeret = bread (object), eszel = you eat",
+          "english": "You eat bread."
+        },
+        {
+          "hungarian": "Ő iskolába megy.",
+          "breakdown": "iskolába = to school, megy = he/she goes",
+          "english": "He/She goes to school."
+        },
+        {
+          "hungarian": "Mi magyarul tanulunk.",
+          "breakdown": "magyarul = in Hungarian, tanulunk = we study",
+          "english": "We study Hungarian."
+        }
       ]
     }
-  ],
-  "conjugationTable": {
-    "title": "Conjugation table: lenni (to be) — present tense",
-    "subtitle": "A high-frequency irregular verb worth memorizing early.",
-    "rows": [
-      { "pronoun": "én", "hungarian": "vagyok", "english": "I am" },
-      { "pronoun": "te", "hungarian": "vagy", "english": "you are (singular)" },
-      { "pronoun": "ő", "hungarian": "van", "english": "he/she is" },
-      { "pronoun": "mi", "hungarian": "vagyunk", "english": "we are" },
-      { "pronoun": "ti", "hungarian": "vagytok", "english": "you are (plural)" },
-      { "pronoun": "ők", "hungarian": "vannak", "english": "they are" }
-    ]
-  }
+  ]
 }
