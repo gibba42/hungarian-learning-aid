@@ -1,9 +1,9 @@
-async function loadGrammar() {
-  const res = await fetch('data/grammar.json');
-  const data = await res.json();
+async function loadGrammarReference() {
+  const response = await fetch('data/content/grammar-reference.json');
+  const grammarReference = await response.json();
   const root = document.getElementById('grammar-root');
 
-  data.sections.forEach((section) => {
+  grammarReference.sections.forEach((section) => {
     const article = document.createElement('article');
     article.className = 'panel';
 
@@ -18,15 +18,15 @@ async function loadGrammar() {
   const tablePanel = document.createElement('section');
   tablePanel.className = 'panel';
   tablePanel.innerHTML = `
-    <h2>${data.conjugationTable.title}</h2>
-    <p class="meta">${data.conjugationTable.subtitle}</p>
+    <h2>${grammarReference.conjugationTable.title}</h2>
+    <p class="meta">${grammarReference.conjugationTable.subtitle}</p>
     <div class="table-wrap">
       <table class="table">
         <thead>
           <tr><th>Pronoun</th><th>Hungarian form</th><th>English meaning</th></tr>
         </thead>
         <tbody>
-          ${data.conjugationTable.rows
+          ${grammarReference.conjugationTable.rows
             .map(
               (row) =>
                 `<tr><td>${row.pronoun}</td><td>${row.hungarian}</td><td>${row.english}</td></tr>`
@@ -40,4 +40,4 @@ async function loadGrammar() {
   root.append(tablePanel);
 }
 
-loadGrammar();
+loadGrammarReference();

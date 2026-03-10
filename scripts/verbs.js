@@ -1,8 +1,8 @@
 async function loadVerbs() {
-  const res = await fetch('data/verbs.json');
-  const verbs = await res.json();
+  const response = await fetch('data/content/verbs.json');
+  const { verbs } = await response.json();
 
-  const cardData = verbs.flatMap((verb) =>
+  const conjugationCards = verbs.flatMap((verb) =>
     verb.forms.map((form) => ({
       infinitive: verb.englishInfinitive,
       tense: verb.tense,
@@ -11,29 +11,29 @@ async function loadVerbs() {
     }))
   );
 
-  document.getElementById('verb-count').textContent = `${verbs.length} verbs · ${cardData.length} conjugation cards`;
+  document.getElementById('verb-count').textContent = `${verbs.length} verbs · ${conjugationCards.length} conjugation cards`;
 
   const container = document.getElementById('verb-cards');
-  for (const item of cardData) {
-    const btn = document.createElement('button');
-    btn.className = 'card-button';
-    btn.type = 'button';
-    btn.setAttribute('aria-expanded', 'false');
+  for (const item of conjugationCards) {
+    const button = document.createElement('button');
+    button.className = 'card-button';
+    button.type = 'button';
+    button.setAttribute('aria-expanded', 'false');
 
-    btn.innerHTML = `
+    button.innerHTML = `
       <div class="prompt">${item.infinitive}</div>
       <div>tense: <strong>${item.tense}</strong></div>
       <div>pronoun: <strong>${item.pronoun}</strong></div>
       <div class="answer hidden">Hungarian: ${item.hungarian}</div>
     `;
 
-    btn.addEventListener('click', () => {
-      const answer = btn.querySelector('.answer');
+    button.addEventListener('click', () => {
+      const answer = button.querySelector('.answer');
       const hidden = answer.classList.toggle('hidden');
-      btn.setAttribute('aria-expanded', String(!hidden));
+      button.setAttribute('aria-expanded', String(!hidden));
     });
 
-    container.append(btn);
+    container.append(button);
   }
 }
 
