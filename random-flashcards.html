@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Flashcards | Hungarian Learning Aid</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="scripts/random-flashcards.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <h1>Random Flashcards</h1>
+        <nav aria-label="Main navigation">
+          <ul class="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="random-flashcards.html" aria-current="page">Random Flashcards</a></li>
+            <li><a href="vocabulary.html">Vocabulary</a></li>
+            <li><a href="verbs.html">Verbs</a></li>
+            <li><a href="grammar.html">Grammar</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="panel study-nav" aria-label="Study sections">
+        <a class="button-link" href="index.html">Home</a>
+        <a class="button-link" href="random-flashcards.html" aria-current="page">Random Flashcards</a>
+        <a class="button-link" href="vocabulary.html">Vocabulary</a>
+        <a class="button-link" href="verbs.html">Verbs</a>
+        <a class="button-link" href="grammar.html">Grammar</a>
+      </section>
+
+      <section class="panel">
+        <h2>One Card at a Time</h2>
+        <p>Reveal the answer when ready, then jump to a new random card.</p>
+        <p id="random-flashcard-meta" class="meta"></p>
+      </section>
+
+      <section class="panel random-flashcard-panel" aria-live="polite">
+        <div id="random-flashcard-card" class="random-flashcard-card" role="group" aria-label="Random flashcard">
+          <p id="random-flashcard-type" class="random-flashcard-type"></p>
+          <p id="random-flashcard-prompt" class="random-flashcard-prompt"></p>
+          <p id="random-flashcard-answer" class="random-flashcard-answer hidden"></p>
+        </div>
+
+        <div class="quiz-actions random-flashcard-actions">
+          <button id="random-flashcard-reveal" class="button-link" type="button">Reveal answer</button>
+          <button id="random-flashcard-next" class="button-link" type="button">Next random card</button>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

@@ -317,6 +317,50 @@ main.container {
   cursor: pointer;
 }
 
+
+.random-flashcard-panel {
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+.random-flashcard-card {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: clamp(1rem, 2.5vw, 1.6rem);
+  background: #fbfdff;
+  min-height: 240px;
+  display: grid;
+  align-content: center;
+  gap: 0.85rem;
+  cursor: pointer;
+}
+
+.random-flashcard-type {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.random-flashcard-prompt {
+  margin: 0;
+  font-size: clamp(1.45rem, 3.9vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.random-flashcard-answer {
+  margin: 0;
+  color: var(--success);
+  font-size: clamp(1.2rem, 3.3vw, 1.6rem);
+  font-weight: 700;
+  padding-top: 0.8rem;
+  border-top: 1px dashed #c5d8f8;
+}
+
+.random-flashcard-actions {
+  margin-top: 0.8rem;
+}
 .quiz-actions .button-link:disabled {
   background: #90a3c6;
   cursor: not-allowed;
@@ -388,5 +432,13 @@ main.container {
   .quiz-actions .button-link {
     flex: 1 1 140px;
     text-align: center;
+  }
+
+  .random-flashcard-card {
+    min-height: 220px;
+  }
+
+  .random-flashcard-actions .button-link {
+    flex: 1 1 100%;
   }
 }

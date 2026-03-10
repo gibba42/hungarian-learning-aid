@@ -20,6 +20,7 @@ Then open:
 
 ## Pages
 - Home
+- Random Flashcards (one random word/phrase at a time)
 - Vocabulary (click-to-reveal flashcards)
 - Verbs (click-to-reveal conjugation cards)
 - Grammar Reference (explanations + conjugation table)
