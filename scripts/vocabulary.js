@@ -1,32 +1,42 @@
-async function loadVocabulary() {
-  const res = await fetch('data/vocabulary.json');
-  const items = await res.json();
+async function fetchJson(path) {
+  const response = await fetch(path);
+  return response.json();
+}
 
-  const words = items.filter((item) => item.type === 'word').length;
-  const phrases = items.filter((item) => item.type === 'phrase').length;
-  document.getElementById('vocab-count').textContent = `${words} words · ${phrases} short phrases`;
+async function loadVocabularyCards() {
+  const vocabularyData = await fetchJson('data/content/vocabulary.json');
+  const phraseData = await fetchJson('data/content/phrases.json');
+
+  const words = vocabularyData.words ?? [];
+  const phrases = phraseData.phrases ?? [];
+  const flashcardItems = [
+    ...words.map((item) => ({ ...item, type: 'word' })),
+    ...phrases.map((item) => ({ ...item, type: 'phrase' }))
+  ];
+
+  document.getElementById('vocab-count').textContent = `${words.length} words · ${phrases.length} short phrases`;
 
   const container = document.getElementById('vocab-cards');
-  for (const item of items) {
-    const btn = document.createElement('button');
-    btn.className = 'card-button';
-    btn.type = 'button';
-    btn.setAttribute('aria-expanded', 'false');
+  for (const item of flashcardItems) {
+    const button = document.createElement('button');
+    button.className = 'card-button';
+    button.type = 'button';
+    button.setAttribute('aria-expanded', 'false');
 
-    btn.innerHTML = `
+    button.innerHTML = `
       <div class="prompt">${item.hungarian}</div>
       <div class="hint">${item.type === 'phrase' ? 'Short phrase' : 'Vocabulary'} · click to reveal</div>
       <div class="answer hidden">${item.english}</div>
     `;
 
-    btn.addEventListener('click', () => {
-      const answer = btn.querySelector('.answer');
+    button.addEventListener('click', () => {
+      const answer = button.querySelector('.answer');
       const hidden = answer.classList.toggle('hidden');
-      btn.setAttribute('aria-expanded', String(!hidden));
+      button.setAttribute('aria-expanded', String(!hidden));
     });
 
-    container.append(btn);
+    container.append(button);
   }
 }
 
-loadVocabulary();
+loadVocabularyCards();
