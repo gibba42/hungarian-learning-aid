@@ -2,87 +2,153 @@
   "verbs": [
     {
       "englishInfinitive": "to be",
-      "tense": "present",
-      "forms": [
-        { "pronoun": "I", "hungarian": "vagyok" },
-        { "pronoun": "you (singular)", "hungarian": "vagy" },
-        { "pronoun": "he/she", "hungarian": "van" },
-        { "pronoun": "we", "hungarian": "vagyunk" },
-        { "pronoun": "you (plural)", "hungarian": "vagytok" },
-        { "pronoun": "they", "hungarian": "vannak" }
-      ]
-    },
-    {
-      "englishInfinitive": "to be",
-      "tense": "past",
-      "forms": [
-        { "pronoun": "I", "hungarian": "voltam" },
-        { "pronoun": "you (singular)", "hungarian": "voltál" },
-        { "pronoun": "he/she", "hungarian": "volt" },
-        { "pronoun": "we", "hungarian": "voltunk" },
-        { "pronoun": "you (plural)", "hungarian": "voltatok" },
-        { "pronoun": "they", "hungarian": "voltak" }
-      ]
-    },
-    {
-      "englishInfinitive": "to go",
-      "tense": "present",
-      "forms": [
-        { "pronoun": "I", "hungarian": "megyek" },
-        { "pronoun": "you (singular)", "hungarian": "mész" },
-        { "pronoun": "he/she", "hungarian": "megy" },
-        { "pronoun": "we", "hungarian": "megyünk" },
-        { "pronoun": "you (plural)", "hungarian": "mentek" },
-        { "pronoun": "they", "hungarian": "mennek" }
-      ]
+      "hungarianLemma": "lenni",
+      "conjugations": {
+        "present": [
+          { "pronoun": "I", "hungarian": "vagyok" },
+          { "pronoun": "you (singular)", "hungarian": "vagy" },
+          { "pronoun": "he/she", "hungarian": "van" },
+          { "pronoun": "we", "hungarian": "vagyunk" },
+          { "pronoun": "you (plural)", "hungarian": "vagytok" },
+          { "pronoun": "they", "hungarian": "vannak" }
+        ],
+        "past": [
+          { "pronoun": "I", "hungarian": "voltam" },
+          { "pronoun": "you (singular)", "hungarian": "voltál" },
+          { "pronoun": "he/she", "hungarian": "volt" },
+          { "pronoun": "we", "hungarian": "voltunk" },
+          { "pronoun": "you (plural)", "hungarian": "voltatok" },
+          { "pronoun": "they", "hungarian": "voltak" }
+        ],
+        "future": [
+          { "pronoun": "I", "hungarian": "leszek" },
+          { "pronoun": "you (singular)", "hungarian": "leszel" },
+          { "pronoun": "he/she", "hungarian": "lesz" },
+          { "pronoun": "we", "hungarian": "leszünk" },
+          { "pronoun": "you (plural)", "hungarian": "lesztek" },
+          { "pronoun": "they", "hungarian": "lesznek" }
+        ]
+      }
     },
     {
       "englishInfinitive": "to go",
-      "tense": "past",
-      "forms": [
-        { "pronoun": "I", "hungarian": "mentem" },
-        { "pronoun": "you (singular)", "hungarian": "mentél" },
-        { "pronoun": "he/she", "hungarian": "ment" },
-        { "pronoun": "we", "hungarian": "mentünk" },
-        { "pronoun": "you (plural)", "hungarian": "mentetek" },
-        { "pronoun": "they", "hungarian": "mentek" }
-      ]
+      "hungarianLemma": "menni",
+      "conjugations": {
+        "present": [
+          { "pronoun": "I", "hungarian": "megyek" },
+          { "pronoun": "you (singular)", "hungarian": "mész" },
+          { "pronoun": "he/she", "hungarian": "megy" },
+          { "pronoun": "we", "hungarian": "megyünk" },
+          { "pronoun": "you (plural)", "hungarian": "mentek" },
+          { "pronoun": "they", "hungarian": "mennek" }
+        ],
+        "past": [
+          { "pronoun": "I", "hungarian": "mentem" },
+          { "pronoun": "you (singular)", "hungarian": "mentél" },
+          { "pronoun": "he/she", "hungarian": "ment" },
+          { "pronoun": "we", "hungarian": "mentünk" },
+          { "pronoun": "you (plural)", "hungarian": "mentetek" },
+          { "pronoun": "they", "hungarian": "mentek" }
+        ],
+        "future": [
+          { "pronoun": "I", "hungarian": "menni fogok" },
+          { "pronoun": "you (singular)", "hungarian": "menni fogsz" },
+          { "pronoun": "he/she", "hungarian": "menni fog" },
+          { "pronoun": "we", "hungarian": "menni fogunk" },
+          { "pronoun": "you (plural)", "hungarian": "menni fogtok" },
+          { "pronoun": "they", "hungarian": "menni fognak" }
+        ]
+      }
     },
     {
       "englishInfinitive": "to eat",
-      "tense": "present",
-      "forms": [
-        { "pronoun": "I", "hungarian": "eszem" },
-        { "pronoun": "you (singular)", "hungarian": "eszel" },
-        { "pronoun": "he/she", "hungarian": "eszik" },
-        { "pronoun": "we", "hungarian": "eszünk" },
-        { "pronoun": "you (plural)", "hungarian": "esztek" },
-        { "pronoun": "they", "hungarian": "esznek" }
-      ]
+      "hungarianLemma": "enni",
+      "conjugations": {
+        "present": [
+          { "pronoun": "I", "hungarian": "eszem" },
+          { "pronoun": "you (singular)", "hungarian": "eszel" },
+          { "pronoun": "he/she", "hungarian": "eszik" },
+          { "pronoun": "we", "hungarian": "eszünk" },
+          { "pronoun": "you (plural)", "hungarian": "esztek" },
+          { "pronoun": "they", "hungarian": "esznek" }
+        ],
+        "past": [
+          { "pronoun": "I", "hungarian": "ettem" },
+          { "pronoun": "you (singular)", "hungarian": "ettél" },
+          { "pronoun": "he/she", "hungarian": "evett" },
+          { "pronoun": "we", "hungarian": "ettünk" },
+          { "pronoun": "you (plural)", "hungarian": "ettetek" },
+          { "pronoun": "they", "hungarian": "ettek" }
+        ],
+        "future": [
+          { "pronoun": "I", "hungarian": "enni fogok" },
+          { "pronoun": "you (singular)", "hungarian": "enni fogsz" },
+          { "pronoun": "he/she", "hungarian": "enni fog" },
+          { "pronoun": "we", "hungarian": "enni fogunk" },
+          { "pronoun": "you (plural)", "hungarian": "enni fogtok" },
+          { "pronoun": "they", "hungarian": "enni fognak" }
+        ]
+      }
     },
     {
       "englishInfinitive": "to drink",
-      "tense": "present",
-      "forms": [
-        { "pronoun": "I", "hungarian": "iszom" },
-        { "pronoun": "you (singular)", "hungarian": "iszol" },
-        { "pronoun": "he/she", "hungarian": "iszik" },
-        { "pronoun": "we", "hungarian": "iszunk" },
-        { "pronoun": "you (plural)", "hungarian": "isztok" },
-        { "pronoun": "they", "hungarian": "isznak" }
-      ]
+      "hungarianLemma": "inni",
+      "conjugations": {
+        "present": [
+          { "pronoun": "I", "hungarian": "iszom" },
+          { "pronoun": "you (singular)", "hungarian": "iszol" },
+          { "pronoun": "he/she", "hungarian": "iszik" },
+          { "pronoun": "we", "hungarian": "iszunk" },
+          { "pronoun": "you (plural)", "hungarian": "isztok" },
+          { "pronoun": "they", "hungarian": "isznak" }
+        ],
+        "past": [
+          { "pronoun": "I", "hungarian": "ittam" },
+          { "pronoun": "you (singular)", "hungarian": "ittál" },
+          { "pronoun": "he/she", "hungarian": "ivott" },
+          { "pronoun": "we", "hungarian": "ittunk" },
+          { "pronoun": "you (plural)", "hungarian": "ittatok" },
+          { "pronoun": "they", "hungarian": "ittak" }
+        ],
+        "future": [
+          { "pronoun": "I", "hungarian": "inni fogok" },
+          { "pronoun": "you (singular)", "hungarian": "inni fogsz" },
+          { "pronoun": "he/she", "hungarian": "inni fog" },
+          { "pronoun": "we", "hungarian": "inni fogunk" },
+          { "pronoun": "you (plural)", "hungarian": "inni fogtok" },
+          { "pronoun": "they", "hungarian": "inni fognak" }
+        ]
+      }
     },
     {
       "englishInfinitive": "to study",
-      "tense": "present",
-      "forms": [
-        { "pronoun": "I", "hungarian": "tanulok" },
-        { "pronoun": "you (singular)", "hungarian": "tanulsz" },
-        { "pronoun": "he/she", "hungarian": "tanul" },
-        { "pronoun": "we", "hungarian": "tanulunk" },
-        { "pronoun": "you (plural)", "hungarian": "tanultok" },
-        { "pronoun": "they", "hungarian": "tanulnak" }
-      ]
+      "hungarianLemma": "tanulni",
+      "conjugations": {
+        "present": [
+          { "pronoun": "I", "hungarian": "tanulok" },
+          { "pronoun": "you (singular)", "hungarian": "tanulsz" },
+          { "pronoun": "he/she", "hungarian": "tanul" },
+          { "pronoun": "we", "hungarian": "tanulunk" },
+          { "pronoun": "you (plural)", "hungarian": "tanultok" },
+          { "pronoun": "they", "hungarian": "tanulnak" }
+        ],
+        "past": [
+          { "pronoun": "I", "hungarian": "tanultam" },
+          { "pronoun": "you (singular)", "hungarian": "tanultál" },
+          { "pronoun": "he/she", "hungarian": "tanult" },
+          { "pronoun": "we", "hungarian": "tanultunk" },
+          { "pronoun": "you (plural)", "hungarian": "tanultatok" },
+          { "pronoun": "they", "hungarian": "tanultak" }
+        ],
+        "future": [
+          { "pronoun": "I", "hungarian": "tanulni fogok" },
+          { "pronoun": "you (singular)", "hungarian": "tanulni fogsz" },
+          { "pronoun": "he/she", "hungarian": "tanulni fog" },
+          { "pronoun": "we", "hungarian": "tanulni fogunk" },
+          { "pronoun": "you (plural)", "hungarian": "tanulni fogtok" },
+          { "pronoun": "they", "hungarian": "tanulni fognak" }
+        ]
+      }
     }
   ]
 }

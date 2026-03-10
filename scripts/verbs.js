@@ -199,18 +199,37 @@ function setupVerbQuiz(items) {
   renderCurrent();
 }
 
-async function loadVerbs() {
-  try {
-    const { verbs } = await fetchJson('data/content/verbs.json');
-
-    const conjugationCards = verbs.flatMap((verb) =>
-      verb.forms.map((form) => ({
+function normalizeVerbToCards(verb) {
+  if (verb.conjugations && typeof verb.conjugations === 'object') {
+    return Object.entries(verb.conjugations).flatMap(([tense, forms]) =>
+      forms.map((form) => ({
         infinitive: verb.englishInfinitive,
-        tense: verb.tense,
+        lemma: verb.hungarianLemma || '',
+        tense,
         pronoun: form.pronoun,
         hungarian: form.hungarian
       }))
     );
+  }
+
+  if (verb.tense && Array.isArray(verb.forms)) {
+    return verb.forms.map((form) => ({
+      infinitive: verb.englishInfinitive,
+      lemma: verb.hungarianLemma || '',
+      tense: verb.tense,
+      pronoun: form.pronoun,
+      hungarian: form.hungarian
+    }));
+  }
+
+  return [];
+}
+
+async function loadVerbs() {
+  try {
+    const { verbs } = await fetchJson('data/content/verbs.json');
+
+    const conjugationCards = verbs.flatMap((verb) => normalizeVerbToCards(verb));
 
     const verbFilter = document.getElementById('verb-filter');
     const tenseFilter = document.getElementById('tense-filter');
