@@ -171,3 +171,38 @@ body {
   background: #90a3c6;
   cursor: not-allowed;
 }
+
+.grammar-section h2 {
+  margin-bottom: 0.5rem;
+}
+
+.grammar-section h3 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.table-block + .table-block {
+  margin-top: 0.75rem;
+}
+
+.examples-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.example-card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fbfdff;
+  padding: 0.75rem;
+}
+
+.example-card p {
+  margin: 0 0 0.35rem;
+}
+
+.example-card p:last-child {
+  margin-bottom: 0;
+}
