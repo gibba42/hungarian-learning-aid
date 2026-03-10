@@ -20,6 +20,11 @@ function renderCards(items) {
   const container = document.getElementById('verb-cards');
   container.innerHTML = '';
 
+  if (!items.length) {
+    container.innerHTML = '<div class="empty-state">No verb cards match this filter. Try enabling all verbs or tenses.</div>';
+    return;
+  }
+
   for (const item of items) {
     const button = document.createElement('button');
     button.className = 'card-button';
@@ -28,8 +33,8 @@ function renderCards(items) {
 
     button.innerHTML = `
       <div class="prompt">${item.infinitive}</div>
-      <div>tense: <strong>${item.tense}</strong></div>
-      <div>pronoun: <strong>${item.pronoun}</strong></div>
+      <div class="card-meta">Tense: <strong>${item.tense}</strong></div>
+      <div class="card-meta">Pronoun: <strong>${item.pronoun}</strong></div>
       <div class="answer hidden">Hungarian: ${item.hungarian}</div>
     `;
 
@@ -99,7 +104,7 @@ function setupVerbQuiz(items) {
     const item = items[state.currentIndex];
 
     prompt.textContent = item.infinitive;
-    meta.innerHTML = `tense: <strong>${item.tense}</strong> · pronoun: <strong>${item.pronoun}</strong>`;
+    meta.innerHTML = `Tense: <strong>${item.tense}</strong> · Pronoun: <strong>${item.pronoun}</strong>`;
     answer.textContent = item.hungarian;
 
     answer.classList.add('hidden');

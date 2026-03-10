@@ -25,6 +25,11 @@ function renderCards(items) {
   const container = document.getElementById('vocab-cards');
   container.innerHTML = '';
 
+  if (!items.length) {
+    container.innerHTML = '<div class="empty-state">No cards match this filter yet. Try selecting a broader category or content type.</div>';
+    return;
+  }
+
   for (const item of items) {
     const button = document.createElement('button');
     button.className = 'card-button';
@@ -33,7 +38,7 @@ function renderCards(items) {
 
     button.innerHTML = `
       <div class="prompt">${item.hungarian}</div>
-      <div class="hint">${item.type === 'phrase' ? 'Phrase' : 'Word'} · ${item.category} · click to reveal</div>
+      <div class="hint">${item.type === 'phrase' ? 'Phrase' : 'Word'} · ${item.category} · Tap to reveal</div>
       <div class="answer hidden">${item.english}</div>
     `;
 
