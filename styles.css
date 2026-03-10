@@ -371,6 +371,28 @@ main.container {
 .random-flashcard-actions {
   margin-top: 0.8rem;
 }
+
+.random-flashcard-summary {
+  margin-top: 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.85rem;
+  background: #fbfdff;
+}
+
+.random-flashcard-summary ul {
+  margin: 0 0 0.6rem;
+  padding-left: 1.1rem;
+}
+
+.random-flashcard-summary li {
+  margin-bottom: 0.35rem;
+}
+
+.random-flashcard-summary li:last-child {
+  margin-bottom: 0;
+}
+
 .quiz-actions .button-link:disabled {
   background: #90a3c6;
   cursor: not-allowed;
