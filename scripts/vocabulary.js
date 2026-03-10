@@ -1,6 +1,23 @@
 async function fetchJson(path) {
   const response = await fetch(path);
+  if (!response.ok) {
+    throw new Error(`Failed to load ${path} (${response.status})`);
+  }
   return response.json();
+}
+
+function showVocabularyError(message) {
+  const cards = document.getElementById('vocab-cards');
+  const count = document.getElementById('vocab-count');
+  const quizScore = document.getElementById('vocab-quiz-score');
+  const quizCard = document.getElementById('vocab-quiz-card');
+  const quizActions = document.querySelector('.quiz-actions');
+
+  count.textContent = message;
+  cards.innerHTML = `<div class="empty-state">${message}</div>`;
+  quizScore.textContent = 'Quiz unavailable';
+  quizCard.classList.add('hidden');
+  quizActions.classList.add('hidden');
 }
 
 const VOCAB_QUIZ_STORAGE_KEY = 'hungarianAid.vocabularyQuiz';
@@ -96,6 +113,17 @@ function setupVocabularyQuiz(items) {
 
   const total = items.length;
 
+  if (!total) {
+    score.textContent = 'Quiz unavailable: no vocabulary items loaded.';
+    prompt.textContent = 'No prompt available';
+    hint.textContent = '';
+    answer.textContent = '';
+    [revealButton, correctButton, incorrectButton, nextButton, resetButton].forEach((button) => {
+      button.disabled = true;
+    });
+    return;
+  }
+
   if (state.currentIndex >= total) {
     state.currentIndex = 0;
   }
@@ -171,49 +199,54 @@ function setupVocabularyQuiz(items) {
 }
 
 async function loadVocabularyCards() {
-  const vocabularyData = await fetchJson('data/content/vocabulary.json');
-  const phraseData = await fetchJson('data/content/phrases.json');
+  try {
+    const vocabularyData = await fetchJson('data/content/vocabulary.json');
+    const phraseData = await fetchJson('data/content/phrases.json');
 
-  const words = (vocabularyData.words ?? []).map((item) => ({
-    ...item,
-    type: 'word',
-    category: item.category ?? 'General'
-  }));
-  const phrases = (phraseData.phrases ?? []).map((item) => ({
-    ...item,
-    type: 'phrase',
-    category: item.category ?? 'General'
-  }));
+    const words = (vocabularyData.words ?? []).map((item) => ({
+      ...item,
+      type: 'word',
+      category: item.category ?? 'General'
+    }));
+    const phrases = (phraseData.phrases ?? []).map((item) => ({
+      ...item,
+      type: 'phrase',
+      category: item.category ?? 'General'
+    }));
 
-  const flashcardItems = [...words, ...phrases];
-  const categories = [...new Set(flashcardItems.map((item) => item.category))].sort();
+    const flashcardItems = [...words, ...phrases];
+    const categories = [...new Set(flashcardItems.map((item) => item.category))].sort();
 
-  const typeFilter = document.getElementById('type-filter');
-  const categoryFilter = document.getElementById('category-filter');
-  const count = document.getElementById('vocab-count');
+    const typeFilter = document.getElementById('type-filter');
+    const categoryFilter = document.getElementById('category-filter');
+    const count = document.getElementById('vocab-count');
 
-  buildOptions(typeFilter, ['word', 'phrase'], 'All content');
-  buildOptions(categoryFilter, categories, 'All categories');
+    buildOptions(typeFilter, ['word', 'phrase'], 'All content');
+    buildOptions(categoryFilter, categories, 'All categories');
 
-  const updateView = () => {
-    const selectedType = typeFilter.value;
-    const selectedCategory = categoryFilter.value;
+    const updateView = () => {
+      const selectedType = typeFilter.value;
+      const selectedCategory = categoryFilter.value;
 
-    const filteredItems = flashcardItems.filter((item) => {
-      const typeMatch = selectedType === 'all' || item.type === selectedType;
-      const categoryMatch = selectedCategory === 'all' || item.category === selectedCategory;
-      return typeMatch && categoryMatch;
-    });
+      const filteredItems = flashcardItems.filter((item) => {
+        const typeMatch = selectedType === 'all' || item.type === selectedType;
+        const categoryMatch = selectedCategory === 'all' || item.category === selectedCategory;
+        return typeMatch && categoryMatch;
+      });
 
-    renderCards(filteredItems);
-    count.textContent = `${filteredItems.length} cards shown · ${words.length} words · ${phrases.length} short phrases`;
-  };
+      renderCards(filteredItems);
+      count.textContent = `${filteredItems.length} cards shown · ${words.length} words · ${phrases.length} short phrases`;
+    };
 
-  typeFilter.addEventListener('change', updateView);
-  categoryFilter.addEventListener('change', updateView);
+    typeFilter.addEventListener('change', updateView);
+    categoryFilter.addEventListener('change', updateView);
 
-  updateView();
-  setupVocabularyQuiz(flashcardItems);
+    updateView();
+    setupVocabularyQuiz(flashcardItems);
+  } catch (error) {
+    showVocabularyError('Could not load vocabulary content. Please refresh and try again.');
+    console.error(error);
+  }
 }
 
 loadVocabularyCards();
